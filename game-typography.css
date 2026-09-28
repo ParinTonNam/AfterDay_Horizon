@@ -197,8 +197,8 @@ html body.game-app #game-page .exit-dialog * {
 }
 
 /* Keep minigame text independent of the global pixel-font size adjustment. */
-html body.game-app #game-page #minigame,
-html body.game-app #game-page #minigame * {
+html body.game-app #game-page #minigame > :not(.window-header),
+html body.game-app #game-page #minigame > :not(.window-header) * {
   font-size-adjust: none !important;
 }
 #game-page #minigame .header-text {

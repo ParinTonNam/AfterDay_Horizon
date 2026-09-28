@@ -192,7 +192,7 @@ window.startGuidedTutorial = function (onFinish) {
   guidedState.positionTimer = setInterval(guidedPosition, 180);
 };
 
-document.getElementById('guided-skip').addEventListener('click', () => finishGuidedTutorial());
+document.getElementById('guided-skip').addEventListener('click', () => guidedShowCompletion());
 guidedFinish.addEventListener('click', () => finishGuidedTutorial());
 document.addEventListener('click', event => {
   if (!guidedState.active || !(event.target instanceof Element) || !event.target.closest('#game-page')) return;
