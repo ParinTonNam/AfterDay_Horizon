@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1, width=device-width">
+	<script>
+		const entryParams = new URLSearchParams(location.search);
+		if (entryParams.get('demo') === '1' && innerWidth > 760) {
+			const root = document.documentElement;
+			root.classList.add('demo-loading');
+			let hackShown = false;
+			try {
+				const previousHack = Number(sessionStorage.getItem('afterday:hack-shown'));
+				sessionStorage.removeItem('afterday:hack-shown');
+				hackShown = previousHack > 0 && Date.now() - previousHack < 5000;
+			} catch (_) {}
+			if (hackShown || entryParams.get('replay') === '1' || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+				window.afterdayDemoLoadStarted = performance.now();
+				window.afterdayHackFinished = Promise.resolve();
+			} else {
+				root.classList.add('demo-hacking');
+				window.afterdayHackFinished = new Promise(resolve => {
+					const begin = () => setTimeout(() => {
+						root.classList.remove('demo-hacking');
+						window.afterdayDemoLoadStarted = performance.now();
+						resolve();
+					}, 1600);
+					document.addEventListener('DOMContentLoaded', begin, { once: true });
+				});
+			}
+		}
+	</script>
+	<style>
+		#game-hack{display:none;--mono:"Kanit",sans-serif;--thai:"Kanit",sans-serif}
+		html.demo-hacking #game-hack{display:grid}
+		#game-loading{display:none}
+		html.demo-loading body>.desktop,html.demo-loading #guided-tutorial{visibility:hidden!important}
+		html.demo-loading:not(.demo-hacking) #game-loading{display:flex}
+	</style>
+	<meta name="theme-color" content="#071310">
+	<meta name="description" content="AfterDay Horizon เกมเอาชีวิตรอดสำหรับผู้เล่นสองคน ผ่าน VR และเว็บไซต์ ร่วมมือกันดูแลบังเกอร์ในโลกหลังวิกฤตสภาพภูมิอากาศ">
+	<title>AfterDay Horizon</title>
+	<link rel="icon" type="image/svg+xml" href="img/afterday-favicon.svg?v=1">
+
+	<link rel="stylesheet" href="./index.css?v=3" />
+	<link rel="stylesheet" href="./minigame.css?v=2" />
+	<link rel="stylesheet" href="./tutorial.css?v=5">
+	<link rel="stylesheet" href="./menu.css?v=2">
+	<link rel="stylesheet" href="./virus.css">
+	<link rel="stylesheet" href="./credit.css">
+	<link rel="stylesheet" href="./game-gate.css">
+	<link rel="stylesheet" href="./game-transition.css?v=3">
+	<link rel="stylesheet" href="./game-ui.css?v=14">
+	<link rel="stylesheet" href="./game-loading.css?v=1">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<!-- <link href="https://fonts.googleapis.com/css2?family=J ersey+10&family=Mitr:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"> -->
+	<link href="https://fonts.googleapis.com/css2?family=Mitr:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="./pixel-font.css?v=4">
+	<link rel="stylesheet" href="./game-typography.css?v=22">
+	<link rel="stylesheet" href="./game-water.css?v=2">
+	<link rel="stylesheet" href="./game-result.css?v=2">
+	<link rel="stylesheet" href="./game-manuals.css?v=1">
+	<link rel="stylesheet" href="./game-file-viewer.css?v=1">
+</head>
+
+<body class="game-app">
+	<div id="game-hack" class="game-transition is-active" role="status" aria-live="polite">
+		<div class="game-transition-slice game-transition-slice-one" aria-hidden="true"></div>
+		<div class="game-transition-slice game-transition-slice-two" aria-hidden="true"></div>
+		<div class="game-transition-content">
+			<span class="game-transition-code">AFTERDAY HORIZON / SYSTEM ACCESS</span>
+			<strong class="game-transition-title" data-text="กำลังเข้าระบบบังเกอร์">กำลังเข้าระบบบังเกอร์</strong>
+			<span class="game-transition-status">CONNECTING <span aria-hidden="true">▰▰▰▰▰▰</span></span>
+		</div>
+	</div>
+	<div id="game-loading" role="status" aria-live="polite">
+		<div class="game-loading-panel">
+			<span class="game-loading-kicker">AFTERDAY HORIZON / DEMO MODE</span>
+			<img src="Icon/logo_title.png" alt="AfterDay Horizon">
+			<div class="game-loading-copy"><strong id="game-loading-title">กำลังเตรียมบังเกอร์</strong><span id="game-loading-detail">กำลังเชื่อมต่อระบบและข้อมูลเกม</span></div>
+			<div class="game-loading-track" aria-hidden="true"><span></span></div>
+			<a id="game-loading-back" href="index.html#play" hidden>กลับหน้าเว็บไซต์ ↗</a>
+		</div>
+	</div>
+	<div class="mobile-game-gate">
+		<span>AFTERDAY HORIZON / GAME</span>
+		<h1>เกมฝั่งเว็บไซต์ใช้จอคอมพิวเตอร์</h1>
+		<p>ส่วนนี้มีหน้าต่างและเครื่องมือหลายชุดที่ต้องใช้พื้นที่บนจอคอมพิวเตอร์ คุณยังดูคลิปการเล่นจริงและข้อมูลโปรเจกต์บนมือถือได้</p>
+		<a href="index.html#demo">ดูคลิป Showcase</a>
+		<a href="index.html">กลับหน้าโปรเจกต์</a>
+	</div>
+	<div id="game-page" class="desktop hidden">
+		<img class="logo" src="Icon/Logo.png">
+		<div class="video-container">
+			<video autoplay muted loop>
+				<source src="video/test4.mp4" type="video/mp4">
+				Your browser does not support the video tag.
+			</video>
+		</div>
+
+		<!-- หน้าต่างยืนยันการใช้กุญแจ -->
+		<div class="window enter_code" id="unlock_confirmation" style="display:none" role="dialog" aria-modal="true" aria-labelledby="unlock-title">
+			<div class="window-header">
+				<span class="unlock-header-mark" aria-hidden="true"></span>
+				<span id="unlock-title">This File is Locked</span>
+				<span class="unlock-header-mark" aria-hidden="true"></span>
+			</div>
+			<div class="window-body" id="unlock_page">
+				<span class="unlock-key-icon" aria-hidden="true"><img src="Icon/ui-key.svg" alt=""></span>
+				<span id="unlock_text">Use 1 key to unlock this file?</span>
+				<div class="btn_confirm">
+					<button type="button" class="main_btn" id="yes_btn" onclick="useKey()">Yes <span aria-hidden="true">↗</span></button>
+					<button type="button" class="main_btn" id="no_btn" onclick="closeWindow('unlock_confirmation')">Cancel</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="window exit-dialog" id="close_confirmation" style="display:none" role="dialog" aria-modal="true" aria-labelledby="exit-title">
+			<div class="window-header exit-dialog-top">
+				<span>AFTERDAY HORIZON / SYSTEM CONTROL</span>
+				<button type="button" onclick="cancelExit()" aria-label="ปิดหน้าต่าง">×</button>
+			</div>
+			<div class="exit-dialog-body">
+				<div class="exit-dialog-emblem" aria-hidden="true"><img src="Icon/ui-shutdown.svg" alt=""></div>
+				<span class="exit-dialog-kicker">SESSION / EXIT</span>
+				<h2 id="exit-title">ออกจากบังเกอร์?</h2>
+				<p>กลับไปหน้าแนะนำ AfterDay Horizon ได้ทันที</p>
+				<div class="exit-dialog-actions">
+					<button type="button" class="exit-stay" onclick="cancelExit()" data-exit-focus>เล่นต่อ</button>
+					<button type="button" class="exit-leave" onclick="exitToPresentation()">กลับหน้าเว็บไซต์ <span aria-hidden="true">↗</span></button>
+				</div>
+			</div>
+		</div>
+
+		<div class="window" id="folder1">
+			<div class="window-header">
+				<button class="button" onclick="closeWindow('folder1')">&lt; Back</button>
+				<span>Folder 1</span>
+				<button class="button close" onclick="closeWindow('folder1')">X</button>
+			</div>
+			<div class="window-body folder1-body"></div>
+		</div>
+		
+		<div class="window" id="folder2">
+			<div class="window-header">
+				<button class="button" onclick="closeWindow('folder2')">&lt; Back</button>
+				<span>Folder 2</span>
+				<button class="button close" onclick="closeWindow('folder2')">X</button>
+			</div>
+			<div class="window-body folder2-body"></div>
+		</div>
+		<div class="window" id="folder3">
+			<div class="window-header">
+				<button class="button" onclick="closeWindow('folder3')">&lt; Back</button>
+				<span>Folder 3</span>
+				<button class="button close" onclick="closeWindow('folder3')">X</button>
+			</div>
+			<div class="window-body folder3-body"></div>
+		</div>
+		<div class="window" id="folder4">
+			<div class="window-header">
+				<button class="button" onclick="closeWindow('folder4')">&lt; Back</button>
+				<span>Folder 4</span>
+				<button class="button close" onclick="closeWindow('folder4')">X</button>
+			</div>
+			<div class="window-body folder4-body"></div>
+		</div>
+		
+		<div class="window" id="folder_readme">
+			<div class="window-header">
+				<button class="button" onclick="closeWindow('folder_readme')">&lt; Back</button>
+				<span>Readme</span>
+				<button class="button close" onclick="closeWindow('folder_readme')">X</button>
+			</div>
+			<div class="window-body folder_readme-body"></div>
+		</div>
+
+		<!-- water_supply_enter_page -->
+		<div class="window system-entry" id="water_supply_enter_page" style="background-color: #00ffff; border: 5px solid #00FFFF;">
+			<div class="window-header" style="background-color: #00FFFF;">
+				<div></div>
+				<span>Water Supply</span>
+				<button class="button_tuto" type="button" onclick="openWindow('file_number5')" aria-label="คู่มือระบบน้ำ" title="คู่มือระบบน้ำ">?</button>
+				<button class="button close" onclick="closeWindow('water_supply_enter_page')">X</button>
+			</div>
+			<div class="enter_page">
+				<img style="width: 15%;" src="Icon/water_supply_icon _blue.png">
+				<div class="text_enter_page " style="color: #00FFFF;">Water Supply System</div>
+				<button class="main_btn enter_btn" id="enter_water"
+					onclick="CnO_Window('water_supply_enter_page', 'select_pipe')">Enter</button>
+			</div>
+		</div>
+
+		<!-- select_pipe -->
+		<div class="window" id="select_pipe" style="background-color: #00FFFF; border: 5px solid #00FFFF;">
+			<div class="window-header" style="background-color: #00FFFF;">
+				<button class="button" onclick="CnO_Window('select_pipe', 'water_supply_enter_page')">
+					< Back </button>
+						<span>Water Supply</span>
+						<button class="button close" onclick="closeWindow('select_pipe')">X</button>
+			</div>
+			<div class="enter_page pipe-select-page">
+				<div class="pipe-intro"><span>WATER / PIPE NETWORK</span><strong>Choose a pipe to inspect</strong></div>
+				<div class="btn_pipe_container">
+					<div class="system_pipe" id="y_system">เครื่องระบบประปา</div>
+					<div class="yellow_pipe" id="y_pipe1">END</div>
+					<div class="yellow_pipe" id="y_pipe2">START</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- water_supply -->
+		<div class="window" id="water_supply" style="background-color: #00FFFF; border: 5px solid #00FFFF;">
+			<div class="window-header" style="background-color: #00FFFF;">
+				<button class="button" onclick="CnO_Window('water_supply', 'select_pipe')">
+					< Back</button>
+						<span>Water Supply</span>
+						<button class="button_tuto" onclick="openWindow('file_number5')">?</button>
+						<button class="button close" onclick="closeWindow('water_supply')">X</button>
+			</div>
+			<div class="decode_window">
+				<div class="decode_header">
+					<div class="decode_guide">
+						<div>วิธีการค้นหารหัส</div>
+						<div>
+							<div class="box"></div>
+							<div>= ถูกตัวเลขและถูกตำแหน่ง</div>
+						</div>
+						<div>
+							<div class="box"></div>
+							<div>= ถูกตัวเลขแต่ไม่ถูกตำแหน่ง</div>
+						</div>
+						<div>
+							<div class="box"></div>
+							<div>= ไม่ถูกตัวเลข</div>
+						</div>
+					</div>
+					<div class="pipe_board">
+					</div>
+				</div>
+				<div class="input-container">
+					<div class="btn-container">
+						<button onclick="increment('digit1')" class="button_press">Λ</button>
+						<input type="text" id="digit1" class="input-box" value="0" readonly>
+						<button onclick="decrement('digit1')" class="button_press">V</button>
+					</div>
+					<div class="btn-container">
+						<button onclick="increment('digit2')" class="button_press">Λ</button>
+						<input type="text" id="digit2" class="input-box" value="0" readonly>
+						<button onclick="decrement('digit2')" class="button_press">V</button>
+					</div>
+					<div class="btn-container">
+						<button onclick="increment('digit3')" class="button_press">Λ</button>
+						<input type="text" id="digit3" class="input-box" value="0" readonly>
+						<button onclick="decrement('digit3')" class="button_press">V</button>
+					</div>
+					<div class="btn-container">
+						<button onclick="increment('digit4')" class="button_press">Λ</button>
+						<input type="text" id="digit4" class="input-box" value="0" readonly>
+						<button onclick="decrement('digit4')" class="button_press">V</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Key Unlock system -->
+		<div class="window system-entry" id="lock_key" style="background-color: #e25519; border: 5px solid #e25519;">
+			<div class="window-header" style="background-color: #e25519;">
+				<div></div>
+				<span style="color:#000000;">Key Unlock System</span>
+				<button class="button_tuto" type="button" onclick="openWindow('file_number7')" aria-label="คู่มือปลดล็อกกุญแจ" title="คู่มือปลดล็อกกุญแจ">?</button>
+				<button class="button close" onclick="closeWindow('lock_key')">X</button>
+			</div>
+			<div class="enter_page" style="background-color: #000000;">
+				<img style="width: 15%;" src="Icon/lock_key_icon_orange.png">
+				<div class="text_enter_page" style="color:#e25519;">Key Unlock System</div>
+				<button class="main_btn enter_btn" id="enter_minigame"
+					onclick="CnO_Window('lock_key' ,'minigame')">Enter</button>
+			</div>
+		</div>
+
+		<div class="window" id="minigame" style="background-color: #e25519; border: 5px solid #e25519;">
+			<div class="window-header" style="background-color: #e25519;">
+				<button class="button" onclick="CnO_Window('minigame', 'lock_key'); increase_virus(5)">
+					< Back </button>
+						<span>Key Unlock System</span>
+						<button class="button close"
+							onclick="closeWindow('minigame');increase_virus(5)">X</button>
+			</div>
+			<div class="minigame" style="background-color: #000000;">
+				<div class="image-grid">
+					<div class="image" data-index="0" style="background-position: 0 0;"></div>
+					<div class="image" data-index="1" style="background-position: 50% 0;"></div>
+					<div class="image" data-index="2" style="background-position: 100% 0;"></div>
+					<div class="image" data-index="3" style="background-position: 0 50%;"></div>
+					<div class="image" data-index="4" style="background-position: 50% 50%;"></div>
+					<div class="image" data-index="5" style="background-position: 100% 50%;"></div>
+					<div class="image" data-index="6" style="background-position: 0 100%;"></div>
+					<div class="image" data-index="7" style="background-position: 50% 100%;"></div>
+					<div class="image" data-index="8" style="background-position: 100% 100%;"></div>
+				</div>
+			</div>
+			<div class="timer-container">
+				<div id="time-bar" aria-hidden="true"></div>
+				<div id="gameTimerDisplay">Time left: 30s</div>
+			</div>
+			<div id="winMessage" class="win-message hidden">
+				<img id="win-image" src="" alt="End Game Image">
+				<p id="win-text"></p>
+				<button id="nextGameButton" onclick="continue_Game()">Next Game</button>
+			</div>
+
+		</div>
+
+		<!-- Electrical system -->
+		<div class="window system-entry" id="electrical" style="background-color: #F1FA49; border: 5px solid #F1FA49;">
+			<div class="window-header" style="background-color: #F1FA49;">
+				<div></div>
+				<span>Electrical System</span>
+				<button class="button_tuto" type="button" onclick="openWindow('file_number6')" aria-label="คู่มือระบบไฟฟ้า" title="คู่มือระบบไฟฟ้า">?</button>
+				<button class="button close" onclick="closeWindow('electrical')">X</button>
+			</div>
+			<div class="enter_page" style="background-color: #000000;">
+				<img style="width: 15%;" src="Icon/electrical_icon_yellow.png">
+				<div class="text_enter_page" style="color: #F1FA49;">Electrical System</div>
+				<button class="main_btn enter_btn" id="enter_elect"
+					onclick="CnO_Window('electrical', 'electrical-game')">Enter</button>
+			</div>
+		</div>
+
+		<!-- electrical-game -->
+		<div class="window" id="electrical-game" style="background-color: #F1FA49; border: 5px solid #F1FA49;">
+			<div class="window-header" style="background-color: #F1FA49;">
+				<div class="electrical-header-code">POWER / 01</div>
+				<span>Electrical System</span>
+				<div class="electrical-header-actions">
+					<button class="button_tuto" onclick="openWindow('file_number6')" aria-label="How to fix the electrical system">?</button>
+					<button class="button close" onclick="closeWindow('electrical-game')" aria-label="Close electrical system">×</button>
+				</div>
+			</div>
+			<div class="enter_page electrical-panel" style="background-color: #000000;">
+				<div class="electrical-status">
+					<div class="electrical-status-copy"><span>POWER SEQUENCE</span><strong>Connect 5 circuits</strong></div>
+					<div class="indicator-container" aria-label="Circuit progress">
+						<div class="indicator" id="indicator1"></div>
+						<div class="indicator" id="indicator2"></div>
+						<div class="indicator" id="indicator3"></div>
+						<div class="indicator" id="indicator4"></div>
+						<div class="indicator" id="indicator5"></div>
+					</div>
+				</div>
+
+				<div class="container-elec">
+					<button id="btn0" class=" button-elec" onclick="handleClick(0)"><img style="width: 70%;"
+							src="Icon/thunder_icon.png"></button>
+					<button id="btn1" class=" button-elec" onclick="handleClick(1)"><img style="width: 70%;"
+							src="Icon/thunder_icon.png"></button>
+					<button id="btn2" class=" button-elec" onclick="handleClick(2)"><img style="width: 70%;"
+							src="Icon/thunder_icon.png"></button>
+					<button id="btn3" class=" button-elec" onclick="handleClick(3)"><img style="width: 70%;"
+							src="Icon/thunder_icon.png"></button>
+					<button id="btn4" class=" button-elec" onclick="handleClick(4)"><img style="width: 70%;"
+							src="Icon/thunder_icon.png"></button>
+					<button id="btn5" class=" button-elec" onclick="handleClick(5)"><img style="width: 70%;"
+							src="Icon/thunder_icon.png"></button>
+					<button id="btn6" class=" button-elec" onclick="handleClick(6)"><img style="width: 70%;"
+							src="Icon/thunder_icon.png"></button>
+					<button id="btn7" class=" button-elec" onclick="handleClick(7)"><img style="width: 70%;"
+							src="Icon/thunder_icon.png"></button>
+					<button id="btn8" class=" button-elec" onclick="handleClick(8)"><img style="width: 70%;"
+							src="Icon/thunder_icon.png"></button>
+					<button id="btn9" class=" button-elec" onclick="handleClick(9)"><img style="width: 70%;"
+							src="Icon/thunder_icon.png"></button>
+				</div>
+				<div class="electrical-controls">
+					<button id="resetButton" onclick="resetGame()">↺ <span>Reset circuit</span></button>
+					<div class="electrical-timer"><span>TIME LEFT</span><strong id="timer">30</strong><span>SEC</span></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- virus -->
+		<div class="window" id="virus" style="background-color: #f6433f; border: 5px solid #f6433f;">
+			<div class="window-header" style="background-color: #f6433f;">
+				<div></div>
+				<span style="color:#000000;">Virus Detector</span>
+				<!-- <button class="button_tuto" onclick="openWindow('file_number8')">?</button> -->
+				<button class="button close" onclick="closeWindow('virus')">X</button>
+			</div>
+			<div class="enter_page" id="virus_page" style="background-color: #000000;">
+				<div class="virus_left">
+					<div class="virus_state">
+						<img class="virus_icon" alt="" src="Icon/virus_icon.png">
+						<div class="virus_text">0 %</div>
+					</div>
+					<div class="virus_descrip">ไม่พบไวรัส</div>
+				</div>
+				<div>
+					<div class="circle-container">
+						<div class="btn_virus top-left" onclick="reboot_click(1)"><img alt="" src="Icon/virus1.png">
+						</div>
+						<div class="btn_virus top-right" onclick="reboot_click(2)"><img alt="" src="Icon/virus2.png">
+						</div>
+						<div class="btn_virus bottom-left" onclick="reboot_click(3)"><img alt="" src="Icon/virus3.png">
+						</div>
+						<div class="btn_virus bottom-right" onclick="reboot_click(4)"><img alt="" src="Icon/virus4.png">
+						</div>
+						<div class="center" id="need_reboot_code">3</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Enter Codesystem -->
+		<div class="window enter_code emergency-code" id="enter_Electical_code"
+			style="background-color: #ff0000; border: 5px solid #ff0000;">
+			<div class="window-header" style="background-color: #ff0000;">
+				<div></div>
+				<span>Emergency Alert !!</span>
+				<div></div>
+			</div>
+			<div class="emergency_page" style="background-color: #000000;">
+					<span id="emer_text" style="color:#ff0000;">Electrical system error!</span>
+				<span class="emer_time" id="emer_electic" style="color:#ff0000;">06:00</span>
+				<div class="input_pass_code">
+					<div class="btn-container">
+						<button onclick="up_num('elec1')" class="button_press">Λ</button>
+						<input type="text" id="elec1" class="input_box_pass_code" value="0" inputmode="numeric" pattern="[0-9]" maxlength="1" autocomplete="off" aria-label="Digit 1 of 4">
+						<button onclick="down_num('elec1')" class="button_press">V</button>
+					</div>
+					<div class="btn-container">
+						<button onclick="up_num('elec2')" class="button_press">Λ</button>
+						<input type="text" id="elec2" class="input_box_pass_code" value="0" inputmode="numeric" pattern="[0-9]" maxlength="1" autocomplete="off" aria-label="Digit 2 of 4">
+						<button onclick="down_num('elec2')" class="button_press">V</button>
+					</div>
+					<div class="btn-container">
+						<button onclick="up_num('elec3')" class="button_press">Λ</button>
+						<input type="text" id="elec3" class="input_box_pass_code" value="0" inputmode="numeric" pattern="[0-9]" maxlength="1" autocomplete="off" aria-label="Digit 3 of 4">
+						<button onclick="down_num('elec3')" class="button_press">V</button>
+					</div>
+					<div class="btn-container">
+						<button onclick="up_num('elec4')" class="button_press">Λ</button>
+						<input type="text" id="elec4" class="input_box_pass_code" value="0" inputmode="numeric" pattern="[0-9]" maxlength="1" autocomplete="off" aria-label="Digit 4 of 4">
+						<button onclick="down_num('elec4')" class="button_press">V</button>
+					</div>
+				</div>
+				<p class="emergency-code-hint">Type 4 digits or use the arrows</p>
+				<button class="btn_pass_code" onclick="check_pass_code('enter_Electical_code')">ENTER</button>
+			</div>
+		</div>
+
+		<div class="window enter_code emergency-code" id="enter_Water_code"
+			style="background-color: #ff0000; border: 5px solid #ff0000;">
+			<div class="window-header" style="background-color: #ff0000;">
+				<div></div>
+				<span>Emergency Alert !!</span>
+				<div></div>
+			</div>
+			<div class="emergency_page" style="background-color: #000000;">
+				<span id="emer_text" style="color:#ff0000;">Water supply error!!</span>
+				<span class="emer_time" id="emer_water" style="color:#ff0000;">05:00</span>
+				<div class="input_pass_code">
+					<div class="btn-container">
+						<button onclick="up_num('water1')" class="button_press">Λ</button>
+						<input type="text" id="water1" class="input_box_pass_code" value="0" inputmode="numeric" pattern="[0-9]" maxlength="1" autocomplete="off" aria-label="Digit 1 of 4">
+						<button onclick="down_num('water1')" class="button_press">V</button>
+					</div>
+					<div class="btn-container">
+						<button onclick="up_num('water2')" class="button_press">Λ</button>
+						<input type="text" id="water2" class="input_box_pass_code" value="0" inputmode="numeric" pattern="[0-9]" maxlength="1" autocomplete="off" aria-label="Digit 2 of 4">
+						<button onclick="down_num('water2')" class="button_press">V</button>
+					</div>
+					<div class="btn-container">
+						<button onclick="up_num('water3')" class="button_press">Λ</button>
+						<input type="text" id="water3" class="input_box_pass_code" value="0" inputmode="numeric" pattern="[0-9]" maxlength="1" autocomplete="off" aria-label="Digit 3 of 4">
+						<button onclick="down_num('water3')" class="button_press">V</button>
+					</div>
+					<div class="btn-container">
+						<button onclick="up_num('water4')" class="button_press">Λ</button>
+						<input type="text" id="water4" class="input_box_pass_code" value="0" inputmode="numeric" pattern="[0-9]" maxlength="1" autocomplete="off" aria-label="Digit 4 of 4">
+						<button onclick="down_num('water4')" class="button_press">V</button>
+					</div>
+				</div>
+				<p class="emergency-code-hint">Type 4 digits or use the arrows</p>
+				<button class="btn_pass_code" onclick="check_pass_code('enter_Water_code')">ENTER</button>
+			</div>
+		</div>
+
+		<div class="window enter_code emergency-code" id="enter_Oxygen_code"
+			style="background-color: #ff0000; border: 5px solid #ff0000;">
+			<div class="window-header" style="background-color: #ff0000;">
+				<div></div>
+				<span>Emergency Alert !!</span>
+				<div></div>
+			</div>
+			<div class="emergency_page" style="background-color: #000000;">
+					<span id="emer_text" style="color:#ff0000;">Oxygen generator error!</span>
+				<span class="emer_time" id="emer_oxy" style="color:#ff0000;">04:00</span>
+				<div class="input_pass_code">
+					<div class="btn-container">
+						<button onclick="up_num('oxy1')" class="button_press">Λ</button>
+						<input type="text" id="oxy1" class="input_box_pass_code" value="0" inputmode="numeric" pattern="[0-9]" maxlength="1" autocomplete="off" aria-label="Digit 1 of 4">
+						<button onclick="down_num('oxy1')" class="button_press">V</button>
+					</div>
+					<div class="btn-container">
+						<button onclick="up_num('oxy2')" class="button_press">Λ</button>
+						<input type="text" id="oxy2" class="input_box_pass_code" value="0" inputmode="numeric" pattern="[0-9]" maxlength="1" autocomplete="off" aria-label="Digit 2 of 4">
+						<button onclick="down_num('oxy2')" class="button_press">V</button>
+					</div>
+					<div class="btn-container">
+						<button onclick="up_num('oxy3')" class="button_press">Λ</button>
+						<input type="text" id="oxy3" class="input_box_pass_code" value="0" inputmode="numeric" pattern="[0-9]" maxlength="1" autocomplete="off" aria-label="Digit 3 of 4">
+						<button onclick="down_num('oxy3')" class="button_press">V</button>
+					</div>
+					<div class="btn-container">
+						<button onclick="up_num('oxy4')" class="button_press">Λ</button>
+						<input type="text" id="oxy4" class="input_box_pass_code" value="0" inputmode="numeric" pattern="[0-9]" maxlength="1" autocomplete="off" aria-label="Digit 4 of 4">
+						<button onclick="down_num('oxy4')" class="button_press">V</button>
+					</div>
+				</div>
+				<p class="emergency-code-hint">Type 4 digits or use the arrows</p>
+				<button class="btn_pass_code" onclick="check_pass_code('enter_Oxygen_code')">ENTER</button>
+			</div>
+		</div>
+
+		<!-- virus popup -->
+		<div class="window" id="virus_popup" style="background-color: #ffffff; border: 5px solid #ffffff;">
+			<div class="window-header" style="background-color: #ffffff;">
+				<div></div>
+				<span id="virus_popup_text" style="color:#000000;">Virus Text</span>
+				<button class="button close" onclick="close_virus_popup(this)">X</button>
+			</div>
+			<div class="enter_page" id="virus_popup_page" style="background-color: #000000;">
+			</div>
+		</div>
+
+		<!-- desktop_icon -->
+		<div class="group_file g_folder_file">
+			<div class="icon_wrapper">
+				<img class="icon" id="file_1" data-guide="folders" onclick="openWindow('folder1')" alt="" src="Icon/ui-folder.svg">
+				<div class="desktop_text">Folder 1</div>
+			</div>
+			<div class="icon_wrapper">
+				<img class="icon" id="file_2" data-guide="folders" onclick="openWindow('folder2')" alt="" src="Icon/ui-folder.svg">
+				<div class="desktop_text">Folder 2</div>
+			</div>
+			<div class="icon_wrapper">
+				<img class="icon" id="file_3" data-guide="folders" onclick="openWindow('folder3')" alt="" src="Icon/ui-folder.svg">
+				<div class="desktop_text">Folder 3</div>
+			</div>
+			<div class="icon_wrapper">
+				<img class="icon" id="file_4" data-guide="folders" onclick="openWindow('folder4')" alt="" src="Icon/ui-folder.svg">
+				<div class="desktop_text">Folder 4</div>
+			</div>
+			<div class="icon_wrapper">
+				<img class="icon" id="readme" data-guide="readme" onclick="openWindow('folder_readme')" alt="" src="Icon/ui-readme.svg">
+				<div class="desktop_text">ReadME!</div>
+			</div>
+		</div>
+
+		<div class="group_file g_main_file">
+			<div class="icon_wrapper">
+				<img class="icon" data-guide="virus" onclick="openWindow('virus')" alt="" src="Icon/ui-virus.svg">
+				<div class="desktop_text">Virus Detector</div>
+			</div>
+			<div class="icon_wrapper">
+				<img class="icon" data-guide="key" onclick="openWindow('lock_key')" alt="" src="Icon/ui-key.svg">
+				<div class="desktop_text">Key Unlock System</div>
+			</div>
+			<div class="icon_wrapper">
+				<img class="icon" data-guide="electrical" onclick="openWindow('electrical')" alt="" src="Icon/ui-power.svg">
+				<div class="desktop_text">Electrical system</div>
+			</div>
+			<div class="icon_wrapper">
+				<img class="icon" data-guide="water" onclick="openWindow('water_supply_enter_page')" alt=""
+					src="Icon/ui-water.svg">
+				<div class="desktop_text">Water Supply System</div>
+			</div>
+		</div>
+
+		<div class="status_bar" aria-label="สถานะบังเกอร์">
+			<button class="status-power" id="close" type="button" aria-label="ออกจากเกม" title="กลับหน้าแนะนำโครงการ">
+				<img src="Icon/ui-shutdown.svg" alt="">
+				<span>ออกเกม</span>
+			</button>
+			<div class="status-tile status-health" title="สภาพของบังเกอร์">
+				<span class="status-kicker">BUNKER</span>
+				<div class="status-reading"><img class="battery" alt="" src="Icon/battery_new.png"><strong id="timecount">100%</strong></div>
+				<span class="status-meter" aria-hidden="true"><span></span></span>
+			</div>
+			<div class="status-tile status-keys" title="กุญแจสำหรับปลดล็อกไฟล์">
+				<span class="status-kicker">ACCESS KEY</span>
+				<div class="status-reading"><img class="key_img" alt="" src="Icon/key_new.png"><strong class="key_ea">3</strong></div>
+			</div>
+		</div>
+	</div>
+
+	<div id="menu-page" class="desktop page">
+		<h1 class="menu-title">Welcome to AfterDay Horizon</h1>
+		<p class="menu-context">เกมสำหรับผู้เล่นสองคน · VR + เว็บไซต์</p>
+		<button class="btn_menu" onclick="showEnter_codePage()">Start Game</button>
+		<button class="btn_menu" onclick="showTutorial()">Tutorial</button>
+		<button class="btn_menu" onclick="showcredit()">Credit</button>
+		<button class="menu-back-link" type="button" onclick="location.href='index.html'">← กลับหน้าแนะนำโครงการ</button>
+	</div>
+
+	<div id="enter_code-page" class="desktop page hidden">
+		<h1 class="menu-title">Ready To AfterDay Horizon</h1>
+		<h2 class="menu font_thai" style="font-size: 3em;">กรอกรหัสสองตัวที่ได้จากผู้ดูแลเพื่อเริ่มเกม</h2>
+		<div class="input-container">
+			<div class="btn-container">
+				<button onclick="up_num_entry('code1_entry')" class="button_press">Λ</button>
+				<input type="text" id="code1_entry" class="input-box" value="0" readonly>
+				<button onclick="down_num_entry('code1_entry')" class="button_press">V</button>
+			</div>
+			<div class="btn-container">
+				<button onclick="up_num_entry('code2_entry')" class="button_press">Λ</button>
+				<input type="text" id="code2_entry" class="input-box" value="0" readonly>
+				<button onclick="down_num_entry('code2_entry')" class="button_press">V</button>
+			</div>
+			<div class="btn-container">
+				<input type="text" id="code3_entry" class="input-box" value="?" readonly>
+			</div>
+			<div class="btn-container">
+				<input type="text" id="code4_entry" class="input-box" value="?" readonly>
+			</div>
+		</div>
+		<button class="main_btn hidden" id="start-game-button">Start Game</button>
+	</div>
+
+	<div id="summary-page" class="desktop page hidden">
+		<h1 class="menu-title">หน้านี้จะมีอยู่ไหม มันคือหน้าอะไรนะ</h1>
+		<div class="input-container">
+			<div class="btn-container">
+				<button onclick="up_num('code1')" class="button_press">Λ</button>
+				<input type="text" id="code1" class="input-box" value="0" readonly>
+				<button onclick="down_num('code1')" class="button_press">V</button>
+			</div>
+			<div class="btn-container">
+				<button onclick="up_num('code2')" class="button_press">Λ</button>
+				<input type="text" id="code2" class="input-box" value="0" readonly>
+				<button onclick="down_num('code2')" class="button_press">V</button>
+			</div>
+			<div class="btn-container">
+				<input type="text" id="code3" class="input-box" value="4" readonly>
+			</div>
+			<div class="btn-container">
+				<input type="text" id="code4" class="input-box" value="8" readonly>
+			</div>
+		</div>
+		<button class="main_btn" onclick="showGame()">Back</button>
+		<button class="main_btn" onclick="check_nextDay_code()">Continue</button>
+	</div>
+
+	<div id="thankyou-page" class="guided-complete hidden" role="dialog" aria-modal="true" aria-labelledby="result-title">
+		<div class="guided-complete-panel game-result-panel">
+			<span class="guided-complete-kicker">AFTERDAY HORIZON / DEMO MODE</span>
+			<div class="game-result-status"><span class="game-result-status-dot" aria-hidden="true"></span> SESSION COMPLETE</div>
+			<h2 id="result-title">จบรอบทดลองแล้ว</h2>
+			<p>ขอบคุณที่เข้ามาสำรวจบังเกอร์กับเรา</p>
+			<p class="game-result-note">นี่คือเดโมฝั่งเว็บไซต์สำหรับทดลองใช้งาน ขอบคุณที่ร่วมเดินทางในโลกของ AfterDay Horizon</p>
+			<div class="game-result-actions">
+				<button id="result-replay" class="game-result-button game-result-button-primary" type="button" onclick="replayDemo()">เล่นอีกรอบ <span aria-hidden="true">↻</span></button>
+				<button class="game-result-button game-result-button-secondary" type="button" onclick="exitToPresentation()">กลับหน้าแนะนำ <span aria-hidden="true">↗</span></button>
+			</div>
+		</div>
+	</div>
+
+	<!-- คำแนะนำแบบชี้ปุ่มจริงบนหน้าจอเกม -->
+	<div id="guided-tutorial" class="guided-tutorial" hidden>
+		<div id="guided-spotlight" class="guided-spotlight" aria-hidden="true"></div>
+		<div id="guided-callout" class="guided-callout" role="status" aria-live="polite">
+			<span id="guided-eyebrow" class="guided-eyebrow">OPERATOR TRAINING</span>
+			<strong id="guided-title"></strong>
+			<p id="guided-description"></p>
+			<span id="guided-action" class="guided-action"></span>
+		</div>
+		<div class="guided-hud">
+			<div class="guided-hud-copy"><span>FIELD GUIDE / WEB OPERATOR</span><strong>ลองสำรวจปุ่มจริงบนหน้าจอ</strong><small>เวลาหยุดระหว่างฝึก</small><small class="guided-demo-note">หมายเหตุ: นี่คือเดโมฝั่งเว็บไซต์สำหรับทดลองใช้งาน ยังไม่สามารถเล่นเกมจริงได้ในขณะนี้</small></div>
+			<div id="guided-progress" class="guided-progress" aria-live="polite"></div>
+			<button id="guided-skip" type="button">ข้ามการแนะนำ ↗</button>
+		</div>
+		<div id="guided-complete" class="guided-complete" role="dialog" aria-modal="true" aria-labelledby="guided-complete-title" hidden>
+			<div class="guided-complete-panel">
+				<span class="guided-complete-kicker">AFTERDAY HORIZON / DEMO MODE</span>
+				<div class="guided-complete-progress" aria-label="แนะนำครบ 7 ขั้นตอน">07 / 07 <span>FIELD GUIDE COMPLETE</span></div>
+				<h2 id="guided-complete-title">สำรวจครบแล้ว</h2>
+				<p>คุณรู้จักเครื่องมือฝั่งเว็บไซต์ครบแล้ว ต่อจากนี้จะเป็นการทดลองใช้งานเดโม อีเวนท์จะเริ่มเมื่อคุณกดพร้อมเล่น</p>
+				<p class="guided-complete-note">เดโมนี้เป็นฝั่งเว็บไซต์สำหรับทดลองใช้งาน ยังไม่สามารถเล่นเกมจริงได้ในขณะนี้</p>
+				<button id="guided-finish" class="guided-finish" type="button">พร้อมเล่น <span aria-hidden="true">↗</span></button>
+			</div>
+		</div>
+	</div>
+
+	<div id="credit-page" class="credit page hidden">
+		<div class="logo-section">
+			<img class="img_title" src="Icon/logo_title.png" alt="Game Title">
+		</div>
+	
+		<div class="credit-section">
+			<div class="credit-row">
+				<div class="credit-label">Developed by</div>
+				<div class="credit-content">
+					Parin Dechakorn [ TonNam IT19 ]<br>
+					Pairat Chuenchom [ Adam IT19 ]
+				</div>
+			</div>
+	
+			<div class="credit-row">
+				<div class="credit-label">Advisor</div>
+				<div class="credit-content">
+					Asst. Prof. Dr.Sirion Vittayakorn
+				</div>
+			</div>
+	
+			<div class="credit-row">
+				<div class="credit-label">Credit</div>
+				<div class="credit-content">
+					Icons and images made by Freepik<br>
+					from www.flaticon.com
+				</div>
+			</div>
+		</div>
+	
+		<div class="logo-bottom">
+			<img class="img_logo_c" src="Icon/it_logo.png" alt="IT Logo">
+			<img class="img_logo_c" src="Icon/logo_kmitl.png" alt="KMITL Logo">
+		</div>
+	
+		<button class="btn_credit" onclick="closecredit()">CLOSE</button>
+	</div>
+	
+
+	<script src="game-language.js?v=2"></script>
+	<script src="game-manuals.js?v=1"></script>
+	<script src="script.js?v=11"></script>
+	<script src="minigame.js?v=3"></script>
+	<script src="electic.js"></script>
+	<script src="event.js?v=3"></script>
+	<script src="tutorial.js?v=9"></script>
+	<script src="virus.js"></script>
+	<script src="game-entry.js?v=6"></script>
+	<script src="game-ui.js?v=3"></script>
+</body>
+</html>

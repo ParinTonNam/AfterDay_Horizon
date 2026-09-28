@@ -1,0 +1,77 @@
+#thankyou-page.hidden { display: none !important; }
+
+#thankyou-page {
+  z-index: 10000;
+  background: rgba(0, 12, 7, .72);
+  backdrop-filter: blur(3px);
+}
+
+body.game-app.result-open #game-page { z-index: 1; isolation: isolate; }
+
+html body.game-app #thankyou-page,
+html body.game-app #thankyou-page * {
+  font-family: "Kanit", sans-serif !important;
+  font-size-adjust: none !important;
+  letter-spacing: normal;
+}
+
+#thankyou-page .game-result-panel { width: min(580px, 100%); padding: clamp(26px, 4vw, 42px); }
+
+.game-result-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 25px;
+  color: #b9f37c;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .12em !important;
+}
+
+.game-result-status-dot {
+  width: 9px;
+  height: 9px;
+  flex: none;
+  border-radius: 50%;
+  background: #b9f37c;
+  box-shadow: 0 0 14px #b9f37c;
+}
+
+#thankyou-page h2 { margin-top: 12px; margin-bottom: 6px; }
+#thankyou-page .game-result-note { margin-top: 20px; font-size: 15px; }
+
+.game-result-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.game-result-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 58px;
+  padding: 12px 17px;
+  border: 1px solid #b9f37c;
+  border-radius: 5px;
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.25;
+  cursor: pointer;
+  transition: background-color .16s, box-shadow .16s, transform .16s;
+}
+
+.game-result-button span { font-size: 25px; line-height: 1; }
+.game-result-button-primary { background: #b9f37c; color: #071710; }
+.game-result-button-secondary { background: transparent; color: #e8f7e1; }
+.game-result-button-primary:hover, .game-result-button-primary:focus-visible { background: #d6ffab; }
+.game-result-button-secondary:hover, .game-result-button-secondary:focus-visible { background: #173824; }
+.game-result-button:hover, .game-result-button:focus-visible { outline: none; box-shadow: 0 0 0 3px #b9f37c55; transform: translateY(-2px); }
+
+@media (max-width: 540px) {
+  #thankyou-page { padding: 16px; }
+  #thankyou-page .game-result-panel { padding: 26px 22px; }
+  .game-result-actions { grid-template-columns: 1fr; }
+}

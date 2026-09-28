@@ -1,0 +1,171 @@
+/* Game desktop refresh: keep the bunker palette and the original window layout. */
+#game-page,#game-page :is(div,span,button,input,p,label,strong,small){font-family:"Kanit",sans-serif}
+#guided-tutorial,#guided-tutorial :is(div,span,button,p,strong,small,b),.desktop.page :is(h1,h2,p,button,span),#credit-page :is(div,span,button){font-family:"Kanit",sans-serif}
+.mobile-game-gate,.mobile-game-gate :is(h1,p,a,span){font-family:"Kanit",sans-serif}
+#game-page .group_file{gap:10px}
+#game-page .g_folder_file{top:4%;left:1.5%;width:min(250px,23%);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start}
+#game-page .g_main_file{right:2%;bottom:11%;width:min(560px,46%);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:start}
+#game-page .group_file .icon_wrapper{box-sizing:border-box;width:100%;min-height:104px;padding:10px 5px 7px;display:flex;justify-content:flex-start;align-items:center;gap:6px;border:1px solid rgba(88,225,145,.16);border-radius:10px;background:rgba(2,18,13,.56);cursor:pointer;transition:background-color .18s,border-color .18s,transform .18s,box-shadow .18s}
+#game-page .group_file .icon_wrapper:hover,#game-page .group_file .icon_wrapper:focus-within{background:rgba(10,47,30,.92);border-color:#58e191;box-shadow:0 0 0 1px rgba(88,225,145,.18),0 8px 24px rgba(0,0,0,.32);transform:translateY(-3px)}
+#game-page .group_file .icon{box-sizing:border-box;width:clamp(38px,3.2vw,52px);height:clamp(38px,3.2vw,52px);object-fit:contain;transition:transform .18s;image-rendering:auto}
+#game-page .group_file .icon:hover{transform:scale(1.06)}
+#game-page .group_file .icon:focus-visible{outline:2px solid #b8fa75;outline-offset:4px;border-radius:5px}
+#game-page .desktop_text{max-width:100%;color:#a6f2bd;font:500 14px/1.25 "Kanit",sans-serif;letter-spacing:0;text-wrap:balance;overflow-wrap:break-word}
+#game-page .status_bar{box-sizing:border-box;left:1.5%;bottom:1.5%;width:auto;height:66px;gap:8px;justify-content:flex-start}
+#game-page .rectangle_small{box-sizing:border-box;width:auto;min-width:95px;height:52px;padding:0 13px;gap:9px;border:1px solid #335747;border-radius:12px;background:#17231d;align-items:center}
+#game-page .img_bar{flex-basis:auto;margin:0;color:#f1f7f1;font:600 18px/1 "Kanit",sans-serif;font-variant-numeric:tabular-nums}
+#game-page img.img_bar{width:26px;height:26px;object-fit:contain}
+#game-page .key_ea{margin-left:0}
+#game-page .window-header>span{font-family:"Kanit",sans-serif;font-size:18px;font-weight:600;line-height:1.25}
+#game-page .window-header .button{font-family:"Kanit",sans-serif;font-size:14px;font-weight:600;min-width:36px;min-height:36px}
+#game-page .window-header .button:focus-visible,#game-page button:focus-visible{outline:2px solid #b8fa75;outline-offset:3px}
+
+/* Emergency entry: clearer alarm hierarchy, controls, and countdown. */
+#game-page .window.enter_code:is(#enter_Electical_code,#enter_Water_code,#enter_Oxygen_code){box-sizing:border-box;width:min(680px,72vw);height:min(490px,72vh);border:2px solid #ff2626!important;border-radius:12px;background:#070909!important;box-shadow:0 18px 60px #000,0 0 0 6px rgba(255,0,0,.1);overflow:hidden}
+#game-page .window.enter_code:is(#enter_Electical_code,#enter_Water_code,#enter_Oxygen_code) .window-header{box-sizing:border-box;min-height:62px;padding:10px 22px;background:#c50b0b!important;color:#fff;gap:10px}
+#game-page .window.enter_code:is(#enter_Electical_code,#enter_Water_code,#enter_Oxygen_code) .window-header>div{width:9px;height:9px;border-radius:50%;background:#fff;box-shadow:0 0 12px #fff}
+#game-page .window.enter_code:is(#enter_Electical_code,#enter_Water_code,#enter_Oxygen_code) .window-header>span{font:600 18px/1.25 "Kanit",sans-serif;letter-spacing:.025em;text-transform:uppercase}
+#game-page .emergency_page{box-sizing:border-box;padding:28px 20px 30px;justify-content:center;gap:12px;background:#080909!important}
+#game-page .emergency_page>#emer_text{font:600 clamp(21px,2.4vw,29px)/1.25 "Kanit",sans-serif;color:#ff3535!important;text-align:center;letter-spacing:.04em}
+#game-page .emer_time{font:600 clamp(52px,5vw,64px)/1.15 "Kanit",sans-serif;color:#ff2626!important;font-variant-numeric:tabular-nums;letter-spacing:.1em}
+#game-page .input_pass_code{box-sizing:border-box;display:flex;flex:none;justify-content:center;gap:clamp(8px,1.5vw,18px);width:auto;height:auto;margin:7px 0 0;padding:0;border:0;background:transparent}
+#game-page .input_pass_code .btn-container{gap:5px}
+#game-page .input_pass_code .button_press{box-sizing:border-box;width:54px;height:35px;min-height:35px;border:1px solid #713232;border-radius:7px;background:#231111;color:#ffe4e4;font:600 21px/1 "Kanit",sans-serif;transition:background-color .15s,border-color .15s,transform .15s}
+#game-page .input_pass_code .button_press:hover{background:#7c1919;border-color:#ff5050;color:#fff;transform:none}
+#game-page .input_pass_code .button_press:active{transform:scale(.94)}
+#game-page .input_box_pass_code{box-sizing:border-box;width:54px;height:57px;border:2px solid #a53a3a;border-radius:7px;background:#160d0d;color:#fff;text-align:center;font:600 30px/1 "Kanit",sans-serif;font-variant-numeric:tabular-nums;caret-color:#ff5050}
+#game-page .input_box_pass_code:hover{border-color:#ff6666}
+#game-page .input_box_pass_code:focus{outline:2px solid #ff6a6a;outline-offset:2px;border-color:#ff6a6a;background:#291313;box-shadow:0 0 16px rgba(255,52,52,.25)}
+#game-page .input_box_pass_code::selection{background:#d42626;color:#fff}
+#game-page .emergency-code-hint{margin:0;color:#cbaaaa;font:400 13px/1.3 "Kanit",sans-serif;text-align:center}
+#game-page .btn_pass_code{box-sizing:border-box;min-width:168px;width:auto;min-height:48px;height:auto;margin-top:3px;padding:9px 20px;border:1px solid #ff3434;border-radius:7px;background:#e31414;color:#fff;font:600 16px/1.2 "Kanit",sans-serif;letter-spacing:.06em;cursor:pointer}
+#game-page .btn_pass_code:hover{background:#ff3838;color:#fff;transform:translateY(-2px)}
+#game-page .btn_pass_code:active{transform:translateY(0)}
+/* Keep the minigame countdown and its label inside the orange frame. */
+#game-page #minigame{overflow:hidden}
+#game-page #minigame .timer-container{box-sizing:border-box;height:42px;bottom:0;background:#f3f3f3}
+#game-page #minigame #time-bar{position:absolute;inset:0 auto 0 0;height:100%}
+#game-page #minigame #gameTimerDisplay{box-sizing:border-box;display:flex;align-items:center;width:100%;height:100%;margin:0;padding:0 16px;border-radius:0;color:#101510;font:500 20px/1 "Kanit",sans-serif;position:relative;z-index:1;white-space:nowrap}
+/* Electrical puzzle: status, board, and controls stay in one clear column. */
+#game-page #electrical-game{box-sizing:border-box;overflow:hidden;border-width:3px!important;border-radius:13px;background:#f1fa49;box-shadow:0 20px 65px #000,0 0 0 5px rgba(241,250,73,.12)}
+#game-page #electrical-game .window-header{box-sizing:border-box;flex:none;min-height:57px;padding:9px 18px;background:#f1fa49!important}
+#game-page #electrical-game .window-header>span{font:600 20px/1.2 "Kanit",sans-serif;color:#09110a}
+#game-page .electrical-header-code{width:150px;color:#283314;font:600 11px/1 "Kanit",sans-serif;letter-spacing:.12em}
+#game-page .electrical-header-actions{display:flex;justify-content:flex-end;gap:8px;width:150px}
+#game-page .electrical-header-actions button{position:static;box-sizing:border-box;display:grid;place-items:center;width:36px;height:36px;min-width:36px;min-height:36px;padding:0;border:1px solid #9eaa31;border-radius:7px;background:#e4ed42;color:#10150a;font:600 20px/1 "Kanit",sans-serif;cursor:pointer}
+#game-page .electrical-header-actions button:hover{background:#fff;border-color:#10150a}
+#game-page #electrical-game .electrical-panel{box-sizing:border-box;display:flex;flex:1;flex-direction:column;align-items:center;justify-content:center;gap:18px;width:100%;height:auto;min-height:0;padding:22px 26px 25px;background:radial-gradient(circle at 50% 12%,#11180c,#050705 60%)!important}
+#game-page .electrical-status{box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:20px;width:min(100%,550px);min-height:76px;padding:13px 17px;border:1px solid #636c25;border-radius:10px;background:#131907}
+#game-page .electrical-status-copy{display:flex;flex-direction:column;gap:4px;text-align:left}
+#game-page .electrical-status-copy span{color:#f1fa49;font:600 11px/1.2 "Kanit",sans-serif;letter-spacing:.11em}
+#game-page .electrical-status-copy strong{color:#f1f5d0;font:500 17px/1.2 "Kanit",sans-serif}
+#game-page #electrical-game .indicator-container{display:flex;gap:8px;flex:none;margin:0;padding:0;border:0}
+#game-page #electrical-game .indicator{box-sizing:border-box;width:25px;height:25px;margin:0;border:2px solid #f44a40;border-radius:50%;background:#c91b17;box-shadow:inset 0 -3px 0 rgba(0,0,0,.24)}
+#game-page #electrical-game .indicator.green{border-color:#62f565;background:#27c83c;box-shadow:0 0 12px rgba(63,237,78,.45)}
+#game-page #electrical-game .container-elec{box-sizing:border-box;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:9px;width:min(100%,550px);max-height:250px;padding:13px;border:1px solid #8b962f;border-radius:11px;background:#11170a}
+#game-page #electrical-game .button-elec{box-sizing:border-box;display:grid;place-items:center;width:100%;height:100%;min-height:75px;aspect-ratio:1;border:1px solid #89952d;border-radius:7px;background:#080d07;cursor:pointer;transition:background-color .15s,border-color .15s,transform .15s,box-shadow .15s}
+#game-page #electrical-game .button-elec img{width:42px!important;max-width:65%;height:48px;object-fit:contain}
+#game-page #electrical-game .button-elec:hover{border-color:#f1fa49;background:#202810;transform:translateY(-2px)}
+#game-page #electrical-game .button-elec.green{border-color:#65f56b;background:#145e1d;box-shadow:inset 0 0 0 1px #65f56b}
+#game-page #electrical-game .button-elec.blinking{border-color:#f05d54;background:#672020}
+#game-page .electrical-controls{box-sizing:border-box;display:flex;justify-content:space-between;align-items:center;gap:12px;width:min(100%,550px)}
+#game-page #resetButton{position:static;transform:none;box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:8px;min-width:150px;min-height:50px;padding:9px 15px;border:1px solid #a86344;border-radius:8px;background:#26170e;color:#ffb788;font:600 24px/1 "Kanit",sans-serif;cursor:pointer}
+#game-page #resetButton span{font:600 15px/1 "Kanit",sans-serif}
+#game-page #resetButton:hover{background:#563021;border-color:#ffb788;color:#fff}
+#game-page .electrical-timer{box-sizing:border-box;display:flex;align-items:baseline;justify-content:flex-end;gap:7px;min-width:150px;padding:7px 13px;border:1px solid #8d4a3c;border-radius:8px;background:#28100f;color:#ffaea2}
+#game-page .electrical-timer span{font:600 10px/1 "Kanit",sans-serif;letter-spacing:.07em}
+#game-page #timer{position:static;box-sizing:border-box;display:block;width:auto;height:auto;border:0;border-radius:0;background:transparent;color:#ff6860;font:700 28px/1 "Kanit",sans-serif;font-variant-numeric:tabular-nums}
+@media(max-width:950px){#game-page .electrical-header-code{width:100px}#game-page .electrical-header-actions{width:100px}#game-page #electrical-game .electrical-panel{gap:12px;padding:14px}#game-page #electrical-game .container-elec{max-height:215px}#game-page #electrical-game .button-elec{min-height:62px}}
+/* Pipe selector: keep every tile and both endpoints inside the water window. */
+#game-page #select_pipe{box-sizing:border-box;overflow:hidden;border-width:3px!important;border-radius:13px;background:#00e8ee;box-shadow:0 20px 65px #000,0 0 0 5px rgba(0,235,240,.11)}
+#game-page #select_pipe .window-header{box-sizing:border-box;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;min-height:57px;padding:9px 16px;background:#00e8ee!important}
+#game-page #select_pipe .window-header>span{color:#071c20;font:600 20px/1.2 "Kanit",sans-serif}
+#game-page #select_pipe .window-header .button{width:max-content;min-height:35px;padding:5px 10px;border:1px solid #24a9ae;border-radius:7px;background:#9effff;color:#072226;font:600 14px/1 "Kanit",sans-serif}
+#game-page #select_pipe .window-header .button.close{justify-self:end;min-width:36px;font-size:19px}
+#game-page #select_pipe .window-header .button:hover{background:#e1ffff;border-color:#075d67}
+#game-page #select_pipe .pipe-select-page{box-sizing:border-box;display:flex;flex:1;flex-direction:column;align-items:center;justify-content:center;gap:14px;width:100%;height:auto;min-height:0;padding:20px 22px;background:radial-gradient(circle at 50% 0,#0b3036,#030d10 68%)!important}
+#game-page .pipe-intro{display:flex;flex-direction:column;gap:3px;width:min(100%,760px);text-align:left}
+#game-page .pipe-intro span{color:#28e1e7;font:600 11px/1.2 "Kanit",sans-serif;letter-spacing:.12em}
+#game-page .pipe-intro strong{color:#e1fbfa;font:500 18px/1.2 "Kanit",sans-serif}
+#game-page #select_pipe .btn_pipe_container{box-sizing:border-box;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-template-rows:none;grid-auto-rows:auto;gap:6px;position:relative;width:min(100%,760px);height:auto;max-height:100%;margin:0;padding:clamp(70px,7vw,86px) clamp(67px,9vw,100px) 20px;border:1px solid #258d9b;border-radius:12px;background:#0b3b46;box-shadow:inset 0 0 0 1px rgba(115,248,255,.07),0 14px 32px rgba(0,0,0,.28);overflow:hidden}
+#game-page #select_pipe .pipe{box-sizing:border-box;width:100%;height:auto;aspect-ratio:1;border:1px solid #4bafbd;border-radius:6px;background:#d9f6f8;overflow:hidden;cursor:pointer;transition:transform .14s,border-color .14s,box-shadow .14s}
+#game-page #select_pipe .pipe:hover{border-color:#fff;box-shadow:0 0 0 2px #00e8ee,0 4px 14px rgba(0,0,0,.24);transform:translateY(-2px)}
+#game-page #select_pipe .pipe:active{transform:scale(.96)}
+#game-page #select_pipe .pipe img{display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain}
+#game-page #select_pipe .pipe.pipe_fin{border-color:#75f5a2;box-shadow:inset 0 0 0 3px #19b36b}
+#game-page #y_system{box-sizing:border-box;display:grid;place-items:center;top:13px;left:50%;width:min(58%,430px);height:52px;padding:4px 10px;border:1px solid #4cc2d0;border-radius:8px;background:#d0edf0;background-image:none;color:#12333a;font:600 clamp(15px,2vw,21px)/1.2 "Kanit",sans-serif;transform:translateX(-50%)}
+#game-page #select_pipe .yellow_pipe{box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;top:calc(50% + 20px);bottom:auto;width:clamp(54px,12%,86px);height:78px;padding:8px 5px;border:1px solid #4cc2d0;border-radius:8px;background:#d0edf0;background-image:none;color:#0a3038;font:700 clamp(12px,1.5vw,17px)/1 "Kanit",sans-serif;transform:translateY(-50%)}
+#game-page #select_pipe .yellow_pipe::after{content:"";display:block;width:80%;height:9px;border:1px solid #0c7c95;border-radius:2px;background:#f1fa49}
+#game-page #y_pipe2{left:10px;right:auto}
+#game-page #y_pipe1{right:10px;left:auto}
+@media(max-width:950px){#game-page #select_pipe .pipe-select-page{gap:9px;padding:12px}#game-page #select_pipe .btn_pipe_container{gap:4px;padding:65px 67px 14px}#game-page #y_system{height:45px;font-size:15px}#game-page #select_pipe .yellow_pipe{height:62px}}
+/* Compact document tiles inside folders. */
+#game-page .window-body .icon_wrapper{box-sizing:border-box;position:relative;width:108px;min-height:104px;padding:10px 7px;gap:5px;border:1px solid rgba(88,225,145,.2);border-radius:8px;background:#07140e;cursor:pointer;transition:background-color .16s,border-color .16s}
+#game-page .window-body .icon_wrapper:hover,#game-page .window-body .icon_wrapper:focus-within{background:#103321;border-color:#58e191}
+#game-page .window-body .icon_wrapper>.icon{width:42px;height:42px;object-fit:contain}
+#game-page .window-body .icon_wrapper>.desktop_text{font-size:14px;line-height:1.2}
+#game-page .window-body .lock_icon{width:22px;right:11px;top:10px;transform:none}
+#game-page .window-body{gap:12px;padding:18px}
+body.guided-active #game-page .icon_wrapper.is-guide-locked{opacity:.46;cursor:not-allowed}
+
+/* One console dock for power, bunker health, and access keys. */
+#game-page .status_bar{padding:6px;border:1px solid #2a5b3e;border-radius:15px;background:linear-gradient(130deg,rgba(8,41,26,.97),rgba(2,13,9,.96));box-shadow:0 12px 35px #000,0 0 24px rgba(48,231,79,.12);height:76px;gap:6px}
+#game-page .status-power{box-sizing:border-box;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1px;width:70px;height:62px;padding:5px;border:1px solid #9afa77;border-radius:10px;background:linear-gradient(145deg,#1bf02a,#0b8f27);box-shadow:inset 0 1px 0 #aaffaa,0 0 18px rgba(22,238,51,.25);color:#03110a;cursor:pointer;transition:transform .16s,box-shadow .16s,filter .16s}
+#game-page .status-power:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 #baffb8,0 0 26px rgba(22,238,51,.55);filter:brightness(1.12)}
+#game-page .status-power:active{transform:translateY(0)}
+#game-page .status-power img{width:34px;height:34px;object-fit:contain}
+#game-page .status-power span{font:600 10px/1 "Kanit",sans-serif;letter-spacing:.08em}
+#game-page .status-tile{box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;min-width:115px;height:62px;padding:8px 12px;border:1px solid #376e4b;border-radius:10px;background:linear-gradient(160deg,#143724,#0a1c13);box-shadow:inset 0 1px 0 rgba(174,255,180,.12)}
+#game-page .status-tile.status-health{min-width:142px}
+#game-page .status-tile.status-keys{min-width:112px}
+#game-page .status-kicker{color:#9ff6a8;font:500 10px/1 "Kanit",sans-serif;letter-spacing:.06em}
+#game-page .status-reading{display:flex;align-items:center;gap:9px;min-height:31px}
+#game-page .status-reading img{width:22px;height:22px;object-fit:contain}
+#game-page .status-reading strong{color:#f4fff3;font:600 21px/1 "Kanit",sans-serif;font-variant-numeric:tabular-nums}
+#game-page .status-reading .key_ea{margin:0}
+#game-page .status-meter{display:block;height:3px;border-radius:2px;background:#173c27;overflow:hidden}
+#game-page .status-meter>span{display:block;width:var(--charge,100%);height:100%;background:#42ef4d;box-shadow:0 0 8px #42ef4d;transition:width .4s ease}
+@media(max-width:1100px){#game-page .g_folder_file{width:225px}#game-page .g_main_file{width:48%}#game-page .group_file .icon_wrapper{min-height:92px}}
+@media(prefers-reduced-motion:reduce){#game-page .group_file .icon_wrapper,#game-page .group_file .icon,#game-page .status-power,#game-page .status-meter>span{transition:none;transform:none!important}}
+
+/* Exit confirmation keeps the game palette and makes the decision explicit. */
+#game-page.exit-open::before{content:"";position:absolute;inset:0;z-index:1000;background:rgba(0,8,4,.72)}
+#game-page.exit-open #close_confirmation{z-index:1001!important}
+/* Key prompt keeps the original white title bar and black body. */
+#game-page #unlock_confirmation{box-sizing:border-box;width:min(460px,calc(100vw - 40px));height:auto;min-height:280px;border:2px solid #f4fff5;border-radius:13px;background:#050807;color:#f4fff5;box-shadow:0 24px 64px #000,0 0 0 5px rgba(88,225,145,.11);overflow:hidden}
+#game-page #unlock_confirmation .window-header{box-sizing:border-box;min-height:51px;padding:9px 19px;background:#f4fff5;color:#07120a}
+#game-page #unlock_confirmation .window-header>span#unlock-title{font:600 19px/1.2 "Kanit",sans-serif}
+#game-page .unlock-header-mark{width:7px;height:7px;border-radius:50%;background:#27c954}
+#game-page #unlock_page{box-sizing:border-box;display:flex;flex:1;flex-direction:column;align-items:center;justify-content:center;align-content:center;flex-wrap:nowrap;gap:0;padding:25px 24px 27px;background:radial-gradient(circle at 50% 0,rgba(58,200,81,.12),transparent 60%),#050807}
+#game-page .unlock-key-icon{display:grid;place-items:center;width:52px;height:52px;margin-bottom:13px;border:1px solid #369b55;border-radius:11px;background:#10291a}
+#game-page .unlock-key-icon img{width:36px;height:36px;object-fit:contain}
+#game-page #unlock_text{margin:0;color:#f4fff5;font:500 clamp(20px,2vw,25px)/1.3 "Kanit",sans-serif;text-align:center}
+#game-page #unlock_page .btn_confirm{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:min(330px,100%);margin-top:25px}
+#game-page #unlock_page .main_btn{box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:8px;min-height:47px;padding:8px 12px;border-width:1px;border-radius:7px;font:600 16px/1.2 "Kanit",sans-serif;cursor:pointer;transition:transform .16s,background-color .16s,border-color .16s,box-shadow .16s}
+#game-page #unlock_page .main_btn:hover{transform:translateY(-2px)}
+#game-page #yes_btn{border-color:#95f475;background:#95f475;color:#07120a}
+#game-page #yes_btn:hover{border-color:#c3ffad;background:#c3ffad;box-shadow:0 5px 20px rgba(92,238,96,.2)}
+#game-page #yes_btn span{font-size:18px}
+#game-page #no_btn{border-color:#b95252;background:#221010;color:#ff8a80}
+#game-page #no_btn:hover{border-color:#ff6868;background:#421919;color:#fff0ef}
+#game-page #unlock_page .main_btn:active{transform:translateY(0)}
+#game-page .exit-dialog{box-sizing:border-box;width:min(460px,calc(100vw - 48px));height:auto;max-height:calc(100vh - 48px);border:1px solid #75e58e;border-radius:14px;background:#07140d;color:#f4fff3;box-shadow:0 24px 70px #000,0 0 0 5px rgba(76,241,104,.1);overflow:hidden}
+#game-page .exit-dialog-top{box-sizing:border-box;min-height:52px;padding:10px 17px;background:#123721;color:#b9f37c}
+#game-page .exit-dialog-top>span{font:500 12px/1.3 "Kanit",sans-serif;letter-spacing:.07em}
+#game-page .exit-dialog-top>button{box-sizing:border-box;width:33px;height:33px;border:1px solid #50795b;border-radius:6px;background:transparent;color:#eef9ee;font:500 23px/1 "Kanit",sans-serif;cursor:pointer}
+#game-page .exit-dialog-top>button:hover{background:#23583a;border-color:#b9f37c}
+#game-page .exit-dialog-body{display:flex;flex-direction:column;align-items:flex-start;padding:28px 30px 30px;background:radial-gradient(circle at 85% 20%,rgba(63,221,92,.13),transparent 45%),#07140d}
+#game-page .exit-dialog-emblem{display:grid;place-items:center;width:64px;height:64px;margin-bottom:19px;border:1px solid #70e989;border-radius:16px;background:linear-gradient(140deg,#b4ff9b,#40d955);box-shadow:0 0 25px rgba(68,231,97,.22)}
+#game-page .exit-dialog-emblem img{width:37px;height:37px}
+#game-page .exit-dialog-kicker{color:#9df4a3;font:500 12px/1.3 "Kanit",sans-serif;letter-spacing:.09em}
+#game-page .exit-dialog h2{margin:6px 0 7px;color:#f2fff1;font:600 31px/1.25 "Kanit",sans-serif}
+#game-page .exit-dialog p{margin:0;color:#b6d3bc;font:400 15px/1.55 "Kanit",sans-serif}
+#game-page .exit-dialog-actions{display:grid;grid-template-columns:1fr 1.25fr;gap:10px;width:100%;margin-top:30px}
+#game-page .exit-dialog-actions button{min-height:48px;padding:8px 12px;border-radius:7px;font:600 15px/1.2 "Kanit",sans-serif;cursor:pointer;transition:transform .16s,background-color .16s,border-color .16s}
+#game-page .exit-dialog-actions button:hover{transform:translateY(-2px)}
+#game-page .exit-stay{border:1px solid #679b72;background:#10251a;color:#f4fff3}
+#game-page .exit-stay:hover{background:#1f4930;border-color:#b9f37c}
+#game-page .exit-leave{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid #b9f37c;background:#b9f37c;color:#07140d}
+#game-page .exit-leave:hover{background:#d4ffb2}
+#game-page .exit-leave span{font-size:19px}
+@media(max-width:520px){#game-page .exit-dialog-body{padding:23px}.exit-dialog-actions{grid-template-columns:1fr}}

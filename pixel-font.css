@@ -1,0 +1,13 @@
+/* Game-only pixel type. Jersey 10 renders Latin; Kanit supplies Thai glyphs. */
+body.game-app,
+body.game-app * {
+  font-family: "Jersey 10", "Kanit", sans-serif !important;
+  font-size-adjust: .7 !important;
+}
+
+body.game-app { letter-spacing: .02em; }
+
+@media (max-width: 760px) {
+  body.game-app,
+  body.game-app * { font-size-adjust: .58 !important; }
+}

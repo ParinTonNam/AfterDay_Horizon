@@ -1,0 +1,27 @@
+#game-page .english-manual-host {
+  box-sizing: border-box;
+  overflow: auto;
+  padding: clamp(20px, 3vw, 36px);
+  text-align: left;
+  background: #06140e;
+  color: #f1fff1;
+}
+
+#game-page .english-game-manual,
+#game-page .english-game-manual * {
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif !important;
+  font-size-adjust: none !important;
+  letter-spacing: normal !important;
+}
+
+#game-page .english-game-manual { max-width: 900px; margin: auto; }
+#game-page .english-game-manual-label { color: #aeff78; font-size: 12px; font-weight: 800; letter-spacing: .08em !important; }
+#game-page .english-game-manual h3 { margin: 12px 0 22px; font-size: clamp(25px, 3vw, 35px); line-height: 1.2; }
+#game-page .english-game-manual ol { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding: 0; margin: 0; list-style: none; counter-reset: guide-step; }
+#game-page .english-game-manual li { position: relative; min-width: 0; min-height: 76px; padding: 15px 15px 15px 52px; border: 1px solid #335e43; background: #0d281a; color: #deefdf; font-size: 15px; line-height: 1.45; counter-increment: guide-step; }
+#game-page .english-game-manual li::before { content: counter(guide-step, decimal-leading-zero); position: absolute; top: 14px; left: 14px; color: #aeff78; font-size: 13px; font-weight: 800; }
+
+@media (max-width: 1000px) {
+  #game-page .english-game-manual ol { grid-template-columns: 1fr; }
+}

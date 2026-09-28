@@ -1,0 +1,47 @@
+/* Tuning: raise/lower intensity (pixel displacement), line opacity and burst durations here. */
+:root{--glitch-intensity:1.6;--glitch-line-opacity:.9;--glitch-hero-duration:1180ms;--glitch-section-duration:680ms}
+.hero-copy{position:relative}
+#hero-title em{position:relative;isolation:isolate}
+#hero-title em{display:inline-block;text-shadow:2px 0 #1c7040,-1px 0 #d3ff9d}
+#hero-title em::before,#hero-title em::after{content:attr(data-text);position:absolute;inset:0;opacity:0;pointer-events:none;white-space:nowrap}
+#hero-title em::before{color:#c7ff98;text-shadow:calc(-3px * var(--glitch-intensity)) 0 #185c34}
+#hero-title em::after{color:#45e877;text-shadow:calc(3px * var(--glitch-intensity)) 0 #0b4b2c}
+#hero-title em.is-glitching::before{animation:hero-slice-top var(--glitch-hero-duration) steps(2,end) both}
+#hero-title em.is-glitching::after{animation:hero-slice-bottom var(--glitch-hero-duration) steps(2,end) both}
+.hero-copy::after{content:"";position:absolute;z-index:2;left:0;top:32%;width:86%;height:2px;background:linear-gradient(90deg,transparent,#1c6b3c 12%,#8dff84 52%,transparent);opacity:0;pointer-events:none}
+.hero-copy.is-glitching::after{animation:hero-interference var(--glitch-hero-duration) steps(2,end) both}
+.hero-copy.is-glitching #hero-title em{text-shadow:7px 0 #175b36,-5px 0 #9cff80}
+@keyframes hero-slice-top{0%,100%{opacity:0;transform:none}16%{opacity:.88;clip-path:inset(0 0 66% 0);transform:translateX(calc(5px * var(--glitch-intensity)))}34%{opacity:.72;clip-path:inset(17% 0 57% 0);transform:translateX(calc(-4px * var(--glitch-intensity)))}58%{opacity:.8;clip-path:inset(0 0 78% 0);transform:translateX(calc(2px * var(--glitch-intensity)))}76%{opacity:.45;clip-path:inset(32% 0 48% 0);transform:none}}
+@keyframes hero-slice-bottom{0%,100%{opacity:0;transform:none}16%{opacity:.66;clip-path:inset(70% 0 0 0);transform:translateX(calc(-5px * var(--glitch-intensity)))}34%{opacity:.9;clip-path:inset(61% 0 17% 0);transform:translateX(calc(4px * var(--glitch-intensity)))}58%{opacity:.7;clip-path:inset(82% 0 0 0);transform:translateX(calc(-2px * var(--glitch-intensity)))}76%{opacity:.5;clip-path:inset(68% 0 12% 0);transform:none}}
+@keyframes hero-interference{0%,100%{opacity:0;transform:translateY(0)}18%{opacity:var(--glitch-line-opacity);transform:translateY(-12px)}36%{opacity:.14;transform:translateY(31px)}58%{opacity:var(--glitch-line-opacity);transform:translateY(68px)}78%{opacity:0;transform:translateY(96px)}}
+.section{position:relative}
+.section::after{content:"";position:absolute;z-index:2;left:0;right:0;top:1px;height:2px;background:linear-gradient(90deg,transparent 0%,#227344 38%,#9cff91 52%,transparent 72%);opacity:0;transform:scaleX(0);transform-origin:left;pointer-events:none}
+.section.is-glitching::after{animation:section-scan var(--glitch-section-duration) steps(3,end) both}
+.glitch-keyword{position:relative;isolation:isolate;display:inline-block}
+.glitch-keyword::before,.glitch-keyword::after{content:attr(data-text);position:absolute;inset:0;opacity:0;pointer-events:none;white-space:nowrap}
+.glitch-keyword::before{color:#c7ff98;text-shadow:calc(-2px * var(--glitch-intensity)) 0 #185c34}
+.glitch-keyword::after{color:#45e877;text-shadow:calc(2px * var(--glitch-intensity)) 0 #0b4b2c}
+.section.is-glitching .glitch-keyword{animation:section-title-glitch var(--glitch-section-duration) steps(2,end) both}
+.section.is-glitching .glitch-keyword::before{animation:hero-slice-top var(--glitch-section-duration) steps(2,end) both}
+.section.is-glitching .glitch-keyword::after{animation:hero-slice-bottom var(--glitch-section-duration) steps(2,end) both}
+@keyframes section-scan{0%{opacity:0;transform:scaleX(0)}22%{opacity:var(--glitch-line-opacity);transform:scaleX(.25)}55%{opacity:.8;transform:scaleX(.72)}85%{opacity:.35;transform:scaleX(1)}100%{opacity:0;transform:scaleX(1)}}
+@keyframes section-title-glitch{0%,100%{transform:none;text-shadow:none}18%{transform:translateX(calc(2px * var(--glitch-intensity)));text-shadow:calc(-3px * var(--glitch-intensity)) 0 #146840}38%{transform:translateX(calc(-2px * var(--glitch-intensity)));text-shadow:calc(3px * var(--glitch-intensity)) 0 #8dff84}65%{transform:translateX(calc(1px * var(--glitch-intensity)));text-shadow:calc(-2px * var(--glitch-intensity)) 0 #256f42}}
+.hero-signal{display:flex;align-items:center;gap:16px;min-height:44px;margin-top:22px;color:var(--accent)}
+.signal-label{flex:none;color:#7cbd79;font:500 11px/1.3 var(--mono);letter-spacing:.1em}
+.signal-word{position:relative;display:inline-block;min-width:10.5em;font:500 19px/1.4 var(--thai);letter-spacing:.01em}
+.signal-word::before,.signal-word::after{content:attr(data-text);position:absolute;inset:0;opacity:0;pointer-events:none}
+.signal-word::before{color:#d5ff9d;text-shadow:-3px 0 #62ff73}
+.signal-word::after{color:#3ddf72;text-shadow:3px 0 #b9f37c}
+.signal-word.is-glitching{animation:signal-flicker .48s steps(2,end)}
+.signal-word.is-glitching::before{opacity:.85;animation:signal-slice-top .48s steps(2,end)}
+.signal-word.is-glitching::after{opacity:.8;animation:signal-slice-bottom .48s steps(2,end)}
+.hero-copy .actions{margin-top:24px}
+@keyframes signal-flicker{0%,100%{transform:none;text-shadow:none}18%{transform:translateX(-2px);text-shadow:3px 0 #4bed75}35%{transform:translateX(2px)}52%{transform:translateX(-1px);text-shadow:-3px 0 #c8ff9e}70%{transform:translateX(1px)}85%{transform:none}}
+@keyframes signal-slice-top{0%,100%{opacity:0;transform:none}18%,50%{clip-path:inset(0 0 59% 0);transform:translateX(4px)}35%,70%{clip-path:inset(10% 0 70% 0);transform:translateX(-3px)}}
+@keyframes signal-slice-bottom{0%,100%{opacity:0;transform:none}18%,50%{clip-path:inset(58% 0 0 0);transform:translateX(-4px)}35%,70%{clip-path:inset(76% 0 4% 0);transform:translateX(3px)}}
+@media(hover:hover){.hero .button-primary:hover,.play-launch-option-primary:hover{animation:signal-button .38s steps(2,end)}.hero .button-outline:hover{animation:signal-outline .38s steps(2,end)}}
+@keyframes signal-button{0%,100%{box-shadow:none}30%{box-shadow:4px 0 #4bed75,-4px 0 #e7ffb8}55%{box-shadow:-3px 0 #4bed75,3px 0 #e7ffb8}}
+@keyframes signal-outline{0%,100%{box-shadow:none}30%{box-shadow:3px 0 #4bed75,-3px 0 #e7ffb8}55%{box-shadow:-2px 0 #4bed75,2px 0 #e7ffb8}}
+@media(max-width:760px){:root{--glitch-intensity:1;--glitch-line-opacity:.65}}
+@media(max-width:520px){.hero-signal{gap:10px}.signal-word{min-width:0;flex:1;font-size:17px}.signal-label{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.hero-copy.is-glitching #hero-title em{text-shadow:none}#hero-title em.is-glitching::before,#hero-title em.is-glitching::after,.hero-copy.is-glitching::after,.section.is-glitching::after,.section.is-glitching .glitch-keyword,.section.is-glitching .glitch-keyword::before,.section.is-glitching .glitch-keyword::after,.signal-word.is-glitching,.signal-word.is-glitching::before,.signal-word.is-glitching::after,.hero .button-primary:hover,.hero .button-outline:hover,.play-launch-option-primary:hover{animation:none}#hero-title em::before,#hero-title em::after,.glitch-keyword::before,.glitch-keyword::after,.signal-word::before,.signal-word::after{display:none}}

@@ -1,0 +1,11 @@
+.mobile-game-gate{display:none}
+@media(max-width:760px){
+  body{overflow:auto!important;background:#071310!important}
+  body>.desktop,body>.tutorial,body>.credit{display:none!important}
+  .mobile-game-gate{box-sizing:border-box;display:flex;position:relative;z-index:1000;min-height:100svh;padding:40px 24px;flex-direction:column;align-items:flex-start;justify-content:center;color:#f0f5ef;font-family:"Mitr",sans-serif;line-height:1.6;user-select:text}
+  .mobile-game-gate span{font:500 12px/1.5 monospace;color:#b9f37c;letter-spacing:.06em}
+  .mobile-game-gate h1{font:500 clamp(30px,8vw,46px)/1.2 "Mitr",sans-serif;margin:20px 0}
+  .mobile-game-gate p{font:300 16px/1.7 "Mitr",sans-serif;max-width:550px;color:#b9cdbd;margin:0 0 25px}
+  .mobile-game-gate a{box-sizing:border-box;display:flex;align-items:center;justify-content:center;min-height:48px;padding:9px 17px;margin:0 0 12px;width:100%;max-width:330px;text-decoration:none;font:500 15px "Mitr",sans-serif;background:#b9f37c;color:#071310}
+  .mobile-game-gate a+a{background:transparent;border:1px solid #b9f37c;color:#b9f37c}
+}

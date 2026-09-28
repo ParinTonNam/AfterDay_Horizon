@@ -1,0 +1,25 @@
+.concept-gallery { margin-top: clamp(60px, 7vw, 104px); }
+.concept-gallery-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 20px; }
+.concept-gallery-kicker { color: var(--accent); font: 600 12px var(--mono); letter-spacing: .06em; }
+.concept-gallery-head h3 { margin: 9px 0 3px; font: 500 clamp(27px, 3vw, 42px)/1.2 var(--thai); }
+.concept-gallery-head p { margin: 0; color: var(--muted); font: 400 16px/1.5 var(--thai); }
+.concept-gallery-controls { display: flex; align-items: center; gap: 8px; flex: none; }
+.concept-gallery-count { margin-right: 10px; color: var(--accent); font: 600 13px var(--mono); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.concept-gallery-controls button { display: grid; place-items: center; width: 46px; height: 44px; border: 1px solid var(--line); background: var(--panel); color: var(--text); font: 22px/1 sans-serif; cursor: pointer; transition: background .2s, border-color .2s, color .2s; }
+.concept-gallery-controls button:hover, .concept-gallery-controls button:focus-visible { background: var(--panel2); border-color: var(--accent); color: var(--accent); outline: none; }
+.concept-gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.concept-gallery-item { position: relative; display: block; min-width: 0; padding: 0; overflow: hidden; border: 1px solid var(--line); background: #06120e; color: var(--text); text-align: left; cursor: zoom-in; }
+.concept-gallery-item[hidden] { display: none !important; }
+.concept-gallery-item img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #050e0a; transition: transform .35s, filter .35s; }
+.concept-gallery-item:hover img, .concept-gallery-item:focus-visible img { transform: scale(1.04); filter: brightness(1.12); }
+.concept-gallery-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.concept-gallery-number { position: absolute; top: 13px; left: 14px; padding: 5px 8px; border: 1px solid var(--accent); background: rgba(3, 18, 11, .88); color: var(--accent); font: 600 12px var(--mono); }
+.concept-gallery-caption { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 56px; padding: 10px 15px; border-top: 1px solid var(--line); font: 500 16px/1.4 var(--thai); }
+.concept-gallery-caption span { color: var(--accent); font: 21px var(--mono); }
+.media-dialog.is-concept { width: min(1380px, calc(100vw - 32px)); }
+.media-dialog.is-concept .dialog-grid { grid-template-columns: minmax(0, 2fr) minmax(260px, .55fr); }
+.media-dialog.is-concept .dialog-media img { object-fit: contain; }
+@media (max-width: 850px) { .concept-gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .media-dialog.is-concept .dialog-grid { grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; } }
+@media (max-width: 560px) { .concept-gallery-head { align-items: start; flex-direction: column; gap: 14px; } .concept-gallery-controls { align-self: end; } .concept-gallery-grid { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .concept-gallery-item img, .concept-gallery-controls button { transition: none; } }

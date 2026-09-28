@@ -1,0 +1,220 @@
+/* Jersey 10 needs more visual size and breathing room than the previous UI font. */
+html body #game-page,
+html body #game-page *,
+html body .desktop.page,
+html body .desktop.page *,
+html body #game-loading,
+html body #game-loading *,
+html body #game-hack,
+html body #game-hack *,
+html body #credit-page,
+html body #credit-page * {
+  font-size-adjust: .8 !important;
+  letter-spacing: .045em;
+}
+
+/* Keep the guided tutorial at its original type scale and spacing. */
+html body.game-app #guided-tutorial * {
+  font-family: "Kanit", sans-serif !important;
+  font-size-adjust: none !important;
+}
+
+#game-loading-title {
+  font-size: clamp(22px, 2.8vw, 30px);
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+/* The three system entry screens share a calmer title and compact help control. */
+#game-page .system-entry .window-header {
+  position: relative;
+  box-sizing: border-box;
+  justify-content: center;
+  min-height: 62px;
+  padding: 10px 100px;
+}
+#game-page .system-entry .window-header > div:first-child { display: none; }
+#game-page .system-entry .window-header > span {
+  font-size: clamp(19px, 2.1vw, 25px);
+  text-align: center;
+  white-space: nowrap;
+}
+#game-page .system-entry .text_enter_page {
+  max-width: calc(100% - 24px);
+  font-size: clamp(22px, 2.8vw, 32px);
+  line-height: 1.15;
+  white-space: nowrap;
+}
+html body.game-app #game-page .system-entry .enter_btn {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 180px;
+  min-width: 180px;
+  height: 58px;
+  min-height: 58px;
+  padding: 0 14px 5px;
+  border-radius: 6px;
+  font-size: 22px;
+  font-size-adjust: .65 !important;
+  line-height: 1;
+  white-space: nowrap;
+}
+html body.game-app #game-page .system-entry .enter_btn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+#game-page .system-entry .window-header > .button_tuto,
+#game-page .system-entry .window-header > .button.close {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#game-page .system-entry .window-header > .button_tuto { right: 58px; }
+#game-page .system-entry .window-header > .button.close { right: 12px; }
+
+#game-page #water_supply_enter_page { --help-accent: #00e8ee; }
+#game-page #lock_key { --help-accent: #e25519; }
+#game-page #electrical,
+#game-page #electrical-game { --help-accent: #f1fa49; }
+#game-page #water_supply { --help-accent: #00e8ee; }
+#game-page :is(#water_supply_enter_page, #lock_key, #electrical, #water_supply, #electrical-game) .button_tuto {
+  position: static;
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  min-height: 38px;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, .62);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, .11);
+  color: #07110c;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .24);
+  cursor: pointer;
+  transition: background-color .16s, color .16s, transform .16s, box-shadow .16s;
+}
+#game-page :is(#water_supply_enter_page, #lock_key, #electrical, #water_supply, #electrical-game) .button_tuto:hover {
+  background: #07110c;
+  color: var(--help-accent);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, .13);
+}
+#game-page :is(#water_supply_enter_page, #lock_key, #electrical, #water_supply, #electrical-game) .button_tuto:focus-visible {
+  outline: 2px solid #07110c;
+  outline-offset: 2px;
+}
+#game-page :is(#water_supply_enter_page, #lock_key, #electrical).system-entry .window-header > .button_tuto { position: absolute; }
+
+@media (max-width: 950px) {
+  #game-page .system-entry .window-header { min-height: 54px; padding: 8px 88px; }
+  #game-page .system-entry .window-header > span { font-size: 18px; }
+  #game-page .system-entry .window-header > .button_tuto { right: 52px; }
+  #game-page .system-entry .window-header > .button.close { right: 9px; }
+  #game-page .system-entry .text_enter_page { font-size: clamp(18px, 2.7vw, 25px); }
+  #game-page .system-entry .button_tuto { width: 34px; height: 34px; min-width: 34px; min-height: 34px; }
+}
+
+#game-page .group_file .desktop_text { font-size: 18px; line-height: 1.2; letter-spacing: .04em; }
+#game-page .g_main_file .icon_wrapper {
+  height: 150px;
+  min-height: 150px;
+  padding: 13px 7px 11px;
+  gap: 10px;
+}
+#game-page .g_main_file .desktop_text {
+  font-size: 16px;
+  line-height: 1.35;
+  letter-spacing: .025em;
+}
+#game-page .window-body .icon_wrapper > .desktop_text { font-size: 12px; line-height: 1.3; letter-spacing: .025em; }
+#game-page .window-header > span { font-size: 22px; }
+#game-page .window-header .button { font-size: 17px; }
+html body #game-page .status_bar,
+html body #game-page .status_bar * { font-size-adjust: .7 !important; }
+#game-page .status-power { gap: 7px; padding: 3px; }
+#game-page .status-power img { width: 27px; height: 27px; }
+#game-page .status-power span { line-height: 1.1; }
+#game-page .status-reading strong { font-size: 19px; letter-spacing: .08em; }
+
+#game-page .electrical-header-code,
+#game-page .electrical-status-copy span,
+#game-page .electrical-timer span,
+#game-page .pipe-intro span { font-size: 14px; }
+#game-page .electrical-status-copy strong,
+#game-page .pipe-intro strong { font-size: 21px; }
+#game-page #resetButton span { font-size: 18px; }
+#game-page .electrical-timer #timer { font-size: 32px; }
+#game-page #minigame #gameTimerDisplay { font-size: 24px; }
+
+#game-page .emergency_page > #emer_text { font-size: clamp(20px, 2.1vw, 25px); }
+#game-page .emergency_page > .emer_time { font-size: clamp(44px, 4.3vw, 54px); }
+#game-page .input_pass_code { margin-top: 2px; }
+#game-page .input_pass_code .button_press { font-size: 19px; }
+#game-page .input_box_pass_code { font-size: 28px; }
+#game-page .emergency-code-hint { font-size: 14px; }
+#game-page .btn_pass_code { font-size: 18px; margin-top: 5px; }
+#game-page .window.enter_code:is(#enter_Electical_code,#enter_Water_code,#enter_Oxygen_code) { height: min(540px,86vh); }
+#game-page .emergency_page { flex: 1; min-height: 0; overflow-y: auto; padding: 18px 20px; gap: 16px; }
+#game-page #unlock_page .main_btn { font-size: 19px; }
+html body.game-app #game-page .exit-dialog,
+html body.game-app #game-page .exit-dialog * {
+  font-family: "Kanit", sans-serif !important;
+  font-size-adjust: none !important;
+}
+#game-page .exit-dialog .exit-dialog-top > span { font-size: 12px; white-space: nowrap; }
+
+@media (max-width: 950px) {
+  html body #game-page,
+  html body #game-page * { font-size-adjust: .76 !important; }
+  #game-page .group_file .desktop_text { font-size: 16px; }
+  #game-page .g_main_file { grid-template-columns: repeat(2, minmax(0, 1fr)); width: min(400px, 48%); }
+  #game-page .g_main_file .icon_wrapper { height: 116px; min-height: 116px; padding: 10px 6px 8px; gap: 8px; }
+  #game-page .g_main_file .desktop_text { font-size: 14px; line-height: 1.3; }
+  #game-page .window-body .icon_wrapper > .desktop_text { font-size: 11px; }
+  #game-page .emergency_page { gap: 12px; }
+  #game-page .electrical-header-code { width: 90px; white-space: nowrap; }
+  #game-page .electrical-header-actions { width: 80px; }
+  #game-page #electrical-game .window-header > span { font-size: 18px; white-space: nowrap; }
+  #game-page .electrical-header-code,
+  #game-page .electrical-status-copy span,
+  #game-page .electrical-timer span,
+  #game-page .pipe-intro span { font-size: 12px; }
+  #game-page .electrical-status-copy strong,
+  #game-page .pipe-intro strong { font-size: 18px; }
+  #game-page #resetButton { min-width: 160px; padding: 8px 10px; white-space: nowrap; }
+  #game-page #resetButton span { font-size: 16px; white-space: nowrap; }
+  #game-page .electrical-timer { min-width: 145px; gap: 5px; padding: 6px 9px; }
+  #game-page .electrical-timer span { font-size: 11px; white-space: nowrap; }
+  #game-page .electrical-timer #timer { font-size: 28px; }
+}
+
+/* Keep minigame text independent of the global pixel-font size adjustment. */
+html body.game-app #game-page #minigame,
+html body.game-app #game-page #minigame * {
+  font-size-adjust: none !important;
+}
+#game-page #minigame .header-text {
+  box-sizing: border-box;
+  max-width: calc(100% - 32px);
+  margin: 0;
+  padding: 8px 12px;
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: .035em;
+  text-align: center;
+  overflow-wrap: break-word;
+}
+#game-page #minigame #gameTimerDisplay {
+  font-size: clamp(18px, 1.8vw, 22px);
+  line-height: 1.25;
+  letter-spacing: .035em;
+}

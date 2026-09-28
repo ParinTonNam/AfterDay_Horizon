@@ -1,0 +1,28 @@
+.section.play-section{padding:74px 0 88px;background:#06100e;border-top:1px solid var(--line)}
+.play-launch{position:relative;isolation:isolate;overflow:hidden;width:min(100% - 76px,1550px);min-height:690px;padding:32px clamp(24px,4vw,62px) 26px;display:flex;flex-direction:column;border:1px solid #356047;background:radial-gradient(ellipse 45% 40% at 76% 68%,#1e6b3447,transparent 80%),radial-gradient(ellipse 48% 35% at 25% 100%,#063e3066,transparent 80%),#050b0d;box-shadow:inset 0 0 0 1px #081b14,0 24px 65px #0006;color:var(--text)}
+.play-launch::before{content:"";position:absolute;z-index:0;left:0;right:0;bottom:0;height:48%;background:radial-gradient(circle,#56ec7980 1px,transparent 2px) 0 0/27px 27px,repeating-linear-gradient(90deg,transparent 0 53px,#45dc7938 54px 55px),repeating-linear-gradient(0deg,transparent 0 53px,#45dc7938 54px 55px);opacity:.65;mask-image:linear-gradient(to bottom,transparent,#000 55%)}
+.play-launch::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,#0307099c,transparent 24%,transparent 76%,#0307096b),linear-gradient(to bottom,#050b0d 2%,transparent 44%,#050b0d44 100%)}
+.play-launch-top,.play-launch-core{position:relative;z-index:1}
+.play-launch-top{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.play-launch-top{border-bottom:1px solid #496a5680;padding-bottom:20px}
+.play-launch-top .section-number{margin:0;font-size:15px}
+.play-launch-status{display:flex;align-items:center;gap:10px;color:#b7d1bc;font:400 12px/1.3 var(--mono);letter-spacing:.07em}
+.play-launch-status span{width:7px;height:7px;flex:none;border-radius:50%;background:var(--accent);box-shadow:0 0 13px #b9f37c}
+.play-launch-core{width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;text-align:center;padding:42px 0 52px}
+.play-launch-logo{width:min(590px,80%);height:215px;object-fit:contain;mix-blend-mode:screen;filter:drop-shadow(0 8px 22px #e7fff02b)}
+.play-launch h2{font-size:clamp(25px,3.2vw,46px);letter-spacing:-.045em;white-space:nowrap;margin:4px 0 2px}
+.play-launch-options{width:min(100%,700px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:32px;text-align:left}
+.play-launch-option{position:relative;display:grid;align-content:center;gap:7px;min-height:120px;padding:20px 54px 20px 22px;border:1px solid #799d7b;background:#0b1d16e8;color:var(--text);text-align:left;transition:transform .2s,border-color .2s,background .2s}
+.play-launch-option:hover,.play-launch-option:focus-visible{transform:translateY(-4px);border-color:var(--accent);background:#193626}
+.play-launch-option-unavailable,.play-launch-option-unavailable:hover{transform:none;border-color:#496a56;background:#0b1d16a8;color:#a8bbae;cursor:not-allowed}
+.play-launch-option-unavailable strong{color:var(--text)}
+.play-launch-soon{position:absolute;top:18px;right:18px;border:1px solid #718e74;padding:4px 7px;color:var(--accent);font:500 10px/1.2 var(--mono);letter-spacing:.06em}
+.play-launch-option-primary{background:var(--accent);border-color:var(--accent);color:#06130d}
+.play-launch-option-primary:hover,.play-launch-option-primary:focus-visible{background:#d0ffa0;color:#06130d}
+.play-launch-option-index{font:500 11px/1.3 var(--mono);letter-spacing:.06em;opacity:.75}
+.play-launch-option strong{font:500 21px/1.2 var(--thai)}
+.play-launch-option-detail{font:300 13px/1.4 var(--thai);opacity:.8}
+.play-launch-arrow{position:absolute;right:20px;top:calc(50% - 16px);font:400 28px/1 var(--thai)}
+@media(max-width:760px){.section.play-section{padding:52px 0 66px}.play-launch{width:min(100% - 36px,1550px);min-height:0;padding:24px}.play-launch-core{padding:30px 0 42px}.play-launch-logo{width:min(460px,90%);height:180px}}
+@media(max-width:520px){.play-launch{width:min(100% - 28px,1550px);padding:18px}.play-launch-top .section-number{font-size:13px}.play-launch-status{font-size:9px;gap:6px}.play-launch-logo{height:140px}.play-launch h2{font-size:clamp(24px,6.8vw,29px)}.play-launch-options{grid-template-columns:1fr;margin-top:26px}.play-launch-option{min-height:96px}.play-launch-option strong{font-size:19px}}
+@media(prefers-reduced-motion:reduce){.play-launch-option{transition:none}}

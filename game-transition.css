@@ -1,0 +1,29 @@
+.game-transition[hidden]{display:none}
+.game-transition{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;overflow:hidden;isolation:isolate;background:#04110b;color:#eaffdd;pointer-events:all}
+.game-transition::before{content:"";position:absolute;inset:-3%;background:radial-gradient(ellipse at 52% 46%,#226e3980,transparent 60%),radial-gradient(circle,#66ff813b 1px,transparent 2px) 0 0/29px 29px,repeating-linear-gradient(90deg,transparent 0 55px,#4fed7840 56px 57px),repeating-linear-gradient(0deg,transparent 0 55px,#4fed7840 56px 57px);opacity:.62;transform:scale(1.04)}
+.game-transition::after{content:"";position:absolute;inset:0;z-index:3;background:repeating-linear-gradient(0deg,transparent 0 3px,#b8ffbe12 4px 5px),linear-gradient(180deg,transparent 0 43%,#aaff8e75 44% 45%,transparent 46% 100%);opacity:0;pointer-events:none}
+.game-transition.is-active::after{animation:gate-scan 1600ms steps(5,end) both}
+.game-transition-slice{position:absolute;z-index:1;left:-8%;width:116%;height:28%;background:linear-gradient(90deg,transparent,#4bfd756e 24%,#baff8a9c 52%,#195d3b99 74%,transparent);opacity:0;pointer-events:none}
+.game-transition-slice-one{top:17%}.game-transition-slice-two{bottom:13%;transform:scaleX(-1)}
+.game-transition.is-active .game-transition-slice-one{animation:gate-slice-one 1600ms steps(3,end) both}
+.game-transition.is-active .game-transition-slice-two{animation:gate-slice-two 1600ms steps(3,end) both}
+.game-transition-content{position:relative;z-index:2;display:grid;justify-items:center;gap:18px;box-sizing:border-box;width:min(100%,1100px);padding:36px 20px;text-align:center}
+.game-transition-code,.game-transition-status{font:500 clamp(11px,1.1vw,14px)/1.5 var(--mono);letter-spacing:.13em;color:#b9f37c}
+.game-transition-title{position:relative;display:block;isolation:isolate;max-width:100%;font:500 clamp(34px,5vw,64px)/1.12 var(--thai);letter-spacing:-.025em;overflow-wrap:break-word;text-shadow:0 0 30px #65ff8150}
+.game-transition-title::before,.game-transition-title::after{content:attr(data-text);position:absolute;inset:0;opacity:0;white-space:normal;overflow-wrap:inherit;pointer-events:none}
+html body.game-app #game-hack,html body.game-app #game-hack *{font-size-adjust:none!important}
+.game-transition-title::before{color:#cbffab;text-shadow:-7px 0 #125b34}
+.game-transition-title::after{color:#4dfd81;text-shadow:7px 0 #0a6332}
+.game-transition.is-active .game-transition-title{animation:gate-title 1600ms steps(2,end) both}
+.game-transition.is-active .game-transition-title::before{animation:gate-title-top 1600ms steps(2,end) both}
+.game-transition.is-active .game-transition-title::after{animation:gate-title-bottom 1600ms steps(2,end) both}
+.game-transition-status span{display:inline-block;margin-left:12px;letter-spacing:.18em;animation:gate-progress 1600ms steps(6,end) both}
+@keyframes gate-scan{0%,100%{opacity:0;transform:translateY(-70%)}15%,48%,72%{opacity:.72}28%,58%{opacity:.22}92%{opacity:.5;transform:translateY(70%)}}
+@keyframes gate-slice-one{0%,100%{opacity:0;transform:translateX(0)}16%,36%{opacity:.45;transform:translateX(-7%)}52%,76%{opacity:.22;transform:translateX(10%)}}
+@keyframes gate-slice-two{0%,100%{opacity:0;transform:translateX(0) scaleX(-1)}25%,54%{opacity:.35;transform:translateX(8%) scaleX(-1)}68%,84%{opacity:.18;transform:translateX(-5%) scaleX(-1)}}
+@keyframes gate-title{0%,100%{transform:none}18%{transform:translateX(5px)}31%{transform:translateX(-4px)}53%{transform:translateX(2px)}71%{transform:translateX(-2px)}}
+@keyframes gate-title-top{0%,100%{opacity:0;transform:none}17%,36%{opacity:.95;clip-path:inset(0 0 65% 0);transform:translateX(9px)}52%,73%{opacity:.8;clip-path:inset(19% 0 52% 0);transform:translateX(-6px)}}
+@keyframes gate-title-bottom{0%,100%{opacity:0;transform:none}22%,44%{opacity:.8;clip-path:inset(66% 0 0 0);transform:translateX(-9px)}57%,82%{opacity:.9;clip-path:inset(53% 0 25% 0);transform:translateX(6px)}}
+@keyframes gate-progress{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@media(max-width:520px){.game-transition-content{gap:14px}.game-transition-title{font-size:clamp(32px,8.4vw,46px)}.game-transition-code,.game-transition-status{font-size:10px;letter-spacing:.08em}}
+@media(prefers-reduced-motion:reduce){.game-transition,.game-transition::before,.game-transition::after,.game-transition-slice,.game-transition-title,.game-transition-title::before,.game-transition-title::after,.game-transition-status span{animation:none!important}}

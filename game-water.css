@@ -1,0 +1,206 @@
+/* Keep the water code puzzle inside its window at the original cyan scale. */
+#game-page #water_supply {
+  box-sizing: border-box;
+  width: min(900px, calc(100vw - 32px));
+  height: min(610px, calc(100vh - 36px));
+  overflow: hidden;
+}
+
+#game-page #water_supply .window-header {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+  min-height: 58px;
+  padding: 8px 16px;
+  background: #00e8ee !important;
+}
+
+#game-page #water_supply .window-header > span {
+  color: #071c20;
+  font-size: 20px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+#game-page #water_supply .window-header > .button:first-child {
+  justify-self: start;
+  min-height: 36px;
+  padding: 4px 9px;
+}
+
+#game-page #water_supply .window-header > .button_tuto {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+  margin-right: 46px;
+}
+
+#game-page #water_supply .window-header > .button.close {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  min-height: 38px;
+  padding: 0;
+  border: 1px solid #1a98a2;
+  background: #a5faff;
+  color: #071c20;
+  font-size: 18px;
+  line-height: 1;
+}
+
+#game-page #water_supply .decode_window {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(220px, .82fr) minmax(0, 1.4fr);
+  grid-template-rows: 220px auto;
+  align-content: center;
+  align-items: start;
+  gap: 18px 24px;
+  flex: 1;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  padding: 22px 28px 28px;
+  overflow-y: auto;
+}
+
+#game-page #water_supply .decode_header { display: contents; }
+
+#game-page #water_supply .decode_guide {
+  box-sizing: border-box;
+  position: static;
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 220px;
+  min-height: 220px;
+  padding: 14px;
+  border: 2px solid #0097ba;
+  border-radius: 10px;
+  background: #052832;
+  color: #f3ffff;
+}
+
+html body.game-app #game-page #water_supply .decode_guide,
+html body.game-app #game-page #water_supply .decode_guide > div {
+  font-family: "Kanit", sans-serif !important;
+  font-size-adjust: none !important;
+  letter-spacing: normal;
+}
+
+#game-page #water_supply .decode_guide > div {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+#game-page #water_supply .decode_guide > div:first-child {
+  align-self: stretch;
+  margin-bottom: 2px;
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: left;
+}
+
+#game-page #water_supply .decode_guide .box {
+  box-sizing: border-box;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  border-width: 3px;
+}
+
+#game-page #water_supply .pipe_board {
+  box-sizing: border-box;
+  grid-column: 2;
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 2px;
+  width: 100%;
+  height: 220px;
+  padding: 10px;
+  border: 2px solid #0097ba;
+  border-radius: 10px;
+  background: #0097ba;
+  overflow: hidden;
+}
+
+#game-page #water_supply .input-container {
+  box-sizing: border-box;
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  gap: 12px;
+  width: 100%;
+  height: auto;
+}
+
+#game-page #water_supply .btn-container {
+  flex: none;
+  width: min(62px, 22%);
+  gap: 5px;
+}
+
+#game-page #water_supply .btn-container .button_press {
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 31px;
+  min-height: 31px;
+  padding: 0;
+  border: 1px solid #2c8d9a;
+  border-radius: 5px;
+  background: #092f3a;
+  color: #dffcff;
+  font-size: 18px;
+  font-size-adjust: .65 !important;
+  line-height: 1;
+  transform: none;
+}
+
+#game-page #water_supply .btn-container .button_press:hover { border-color: #00e8ee; background: #145567; color: #fff; transform: none; }
+#game-page #water_supply .btn-container .button_press:active { transform: none; }
+
+#game-page #water_supply .input-box {
+  box-sizing: border-box;
+  width: 100%;
+  height: 56px;
+  margin: 0;
+  border-width: 3px;
+  border-radius: 5px;
+  color: #071c20;
+  font-size: 33px;
+  font-size-adjust: .65 !important;
+  line-height: 1;
+}
+
+@media (max-width: 950px) {
+  #game-page #water_supply .decode_window { grid-template-columns: minmax(190px, .8fr) minmax(0, 1.4fr); gap: 14px; padding: 18px; }
+  #game-page #water_supply .decode_guide { padding: 12px; gap: 9px; }
+  #game-page #water_supply .decode_guide > div { font-size: 12px; }
+  #game-page #water_supply .decode_guide > div:first-child { font-size: 17px; }
+  #game-page #water_supply .input-container { gap: 7px; }
+}

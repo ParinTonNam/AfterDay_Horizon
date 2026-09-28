@@ -1,0 +1,12 @@
+/* Small fragments of the play screen's control grid throughout the story. */
+.hero{isolation:isolate}
+.hero::before{content:"";position:absolute;z-index:0;pointer-events:none;left:50%;top:12%;width:100vw;height:88%;transform:translateX(-50%);background:radial-gradient(circle,#56ec7978 1px,transparent 2px) 0 0/27px 27px,repeating-linear-gradient(90deg,transparent 0 53px,#45dc7940 54px 55px),repeating-linear-gradient(0deg,transparent 0 53px,#45dc7940 54px 55px);opacity:.52;mask-image:radial-gradient(ellipse 75% 70% at 50% 58%,#000 12%,transparent 76%)}
+.hero-copy,.hero-media{position:relative;z-index:1}
+.hero-index{z-index:1}
+.concept-section,.systems-section,.demo-section{position:relative;isolation:isolate;overflow:hidden}
+.concept-section>.wrap,.systems-section>.wrap,.demo-section>.wrap{position:relative;z-index:1}
+.concept-section::before,.systems-section::before,.demo-section::before{content:"";position:absolute;z-index:0;pointer-events:none;width:min(62vw,850px);height:72%;background:radial-gradient(circle,#56ec7970 1px,transparent 2px) 0 0/27px 27px,repeating-linear-gradient(90deg,transparent 0 53px,#45dc7938 54px 55px),repeating-linear-gradient(0deg,transparent 0 53px,#45dc7938 54px 55px);opacity:.48;mask-image:radial-gradient(ellipse at center,#000 8%,transparent 72%)}
+.concept-section::before{left:-18%;top:8%}
+.systems-section::before{right:-19%;bottom:-14%;transform:rotate(4deg)}
+.demo-section::before{left:-16%;bottom:-26%;height:82%;transform:rotate(-3deg)}
+@media(max-width:760px){.hero::before{top:6%;height:90%;opacity:.38;mask-image:radial-gradient(ellipse 95% 65% at 50% 45%,#000 10%,transparent 76%)}.concept-section::before,.systems-section::before,.demo-section::before{width:95vw;height:52%;opacity:.35}.concept-section::before{left:-42%;top:0}.systems-section::before{right:-44%;bottom:0}.demo-section::before{left:-43%;bottom:-5%}}
